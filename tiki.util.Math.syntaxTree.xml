@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root>
+<decl_unit>
+<decl_class_definition name="Math">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="random">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="min"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="max"/>
+</decl_declaration>
+</decl_declarator_method>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="boolean"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="less">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="value0"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="value1"/>
+</decl_declaration>
+</decl_declarator_method>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="boolean"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="lessEqual">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="value0"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="value1"/>
+</decl_declaration>
+</decl_declarator_method>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="boolean"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="great">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="value0"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="value1"/>
+</decl_declaration>
+</decl_declarator_method>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="boolean"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="greatEqual">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="value0"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="value1"/>
+</decl_declaration>
+</decl_declarator_method>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="boolean"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="and">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="boolean"/>
+</decl_specifiers>
+<decl_declarator_id id="value0"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="boolean"/>
+</decl_specifiers>
+<decl_declarator_id id="value1"/>
+</decl_declaration>
+</decl_declarator_method>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="boolean"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="or">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="boolean"/>
+</decl_specifiers>
+<decl_declarator_id id="value0"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="boolean"/>
+</decl_specifiers>
+<decl_declarator_id id="value1"/>
+</decl_declaration>
+</decl_declarator_method>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="void"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="qsort">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_array dimension="0">
+<decl_declarator_id id="a"/>
+</decl_declarator_array>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="low"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="high"/>
+</decl_declaration>
+</decl_declarator_method>
+</decl_declaration>
+</decl_class_definition>
+</decl_unit>
+</root>

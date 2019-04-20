@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root>
+<decl_unit>
+<decl_class_definition name="System">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="void"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="print">
+<decl_declaration>
+<decl_specifiers>
+<exp_SCOPE_NAME>String</exp_SCOPE_NAME>
+<decl_specifier kind="class" value=""/>
+</decl_specifiers>
+<decl_declarator_id id="format"/>
+</decl_declaration>
+<decl_vararg_parameter name="arg_list">
+<decl_specifiers>
+<exp_SCOPE_NAME>Object</exp_SCOPE_NAME>
+<decl_specifier kind="class" value=""/>
+</decl_specifiers>
+</decl_vararg_parameter>
+</decl_declarator_method>
+</decl_declaration>
+</decl_class_definition>
+</decl_unit>
+</root>

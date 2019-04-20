@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root>
+<decl_unit>
+<decl_class_definition name="Date">
+<decl_declaration>
+<decl_specifiers>
+<exp_SCOPE_NAME>String</exp_SCOPE_NAME>
+<decl_specifier kind="class" value=""/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="now">
+<decl_declaration>
+<decl_specifiers>
+<exp_SCOPE_NAME>String</exp_SCOPE_NAME>
+<decl_specifier kind="class" value=""/>
+</decl_specifiers>
+<decl_declarator_id id="format"/>
+</decl_declaration>
+</decl_declarator_method>
+</decl_declaration>
+</decl_class_definition>
+</decl_unit>
+</root>

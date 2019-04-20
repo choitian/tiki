@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root>
+<decl_unit>
+<decl_class_definition name="FibonacciSequenceGenerator">
+<decl_annotation key="@info">
+<name>"choi"</name>
+<time>"20190411"</time>
+<msg>"none"</msg>
+</decl_annotation>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="n"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="nn"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_id id="nnn"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="size"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_array dimension="0">
+<decl_declarator_id id="generated"/>
+</decl_declarator_array>
+</decl_declaration>
+<decl_method_definition>
+<decl_declarator_method id="FibonacciSequenceGenerator">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="size"/>
+</decl_declaration>
+</decl_declarator_method>
+<stmt_compound>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>this.size</exp_SCOPE_NAME>
+<exp_INTEGER>100</exp_INTEGER>
+</exp_ASSIGN>
+</stmt_exp>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>this.size</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>size</exp_SCOPE_NAME>
+</exp_ASSIGN>
+</stmt_exp>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>generated</exp_SCOPE_NAME>
+<exp_NEWA>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<exp_SCOPE_NAME>this.size</exp_SCOPE_NAME>
+</exp_NEWA>
+</exp_ASSIGN>
+</stmt_exp>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>nn</exp_SCOPE_NAME>
+<exp_INTEGER>100</exp_INTEGER>
+</exp_ASSIGN>
+</stmt_exp>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>nnn</exp_SCOPE_NAME>
+<exp_INTEGER>200</exp_INTEGER>
+</exp_ASSIGN>
+</stmt_exp>
+</stmt_compound>
+</decl_method_definition>
+<decl_method_definition>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_method id="generate">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="index"/>
+</decl_declaration>
+</decl_declarator_method>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="result"/>
+<decl_initializer>
+<exp_SCOPE_NAME>size</exp_SCOPE_NAME>
+</decl_initializer>
+</decl_declaration>
+<stmt_if>
+<test>
+<exp_BINARY op="EQUAL">
+<exp_SCOPE_NAME>index</exp_SCOPE_NAME>
+<exp_INTEGER>0</exp_INTEGER>
+</exp_BINARY>
+</test>
+<true_stmt>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>result</exp_SCOPE_NAME>
+<exp_INTEGER>0</exp_INTEGER>
+</exp_ASSIGN>
+</stmt_exp>
+</true_stmt>
+<false_stmt>
+<stmt_if>
+<test>
+<exp_BINARY op="EQUAL">
+<exp_SCOPE_NAME>index</exp_SCOPE_NAME>
+<exp_INTEGER>1</exp_INTEGER>
+</exp_BINARY>
+</test>
+<true_stmt>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>result</exp_SCOPE_NAME>
+<exp_INTEGER>1</exp_INTEGER>
+</exp_ASSIGN>
+</stmt_exp>
+</true_stmt>
+<false_stmt>
+<stmt_compound>
+<stmt_if>
+<test>
+<exp_BINARY op="UNEQUAL">
+<exp_INDEX>
+<exp_SCOPE_NAME>generated</exp_SCOPE_NAME>
+<exp_BINARY op="SUB">
+<exp_SCOPE_NAME>index</exp_SCOPE_NAME>
+<exp_INTEGER>1</exp_INTEGER>
+</exp_BINARY>
+</exp_INDEX>
+<exp_INTEGER>0</exp_INTEGER>
+</exp_BINARY>
+</test>
+<true_stmt>
+<stmt_compound>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>result</exp_SCOPE_NAME>
+<exp_INDEX>
+<exp_SCOPE_NAME>generated</exp_SCOPE_NAME>
+<exp_BINARY op="SUB">
+<exp_SCOPE_NAME>index</exp_SCOPE_NAME>
+<exp_INTEGER>1</exp_INTEGER>
+</exp_BINARY>
+</exp_INDEX>
+</exp_ASSIGN>
+</stmt_exp>
+</stmt_compound>
+</true_stmt>
+<false_stmt>
+<stmt_compound>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>result</exp_SCOPE_NAME>
+<exp_BINARY op="ADD">
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>generate</exp_SCOPE_NAME>
+</base>
+<exp_BINARY op="SUB">
+<exp_SCOPE_NAME>index</exp_SCOPE_NAME>
+<exp_INTEGER>1</exp_INTEGER>
+</exp_BINARY>
+</exp_INVOKE>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>generate</exp_SCOPE_NAME>
+</base>
+<exp_BINARY op="SUB">
+<exp_SCOPE_NAME>index</exp_SCOPE_NAME>
+<exp_INTEGER>2</exp_INTEGER>
+</exp_BINARY>
+</exp_INVOKE>
+</exp_BINARY>
+</exp_ASSIGN>
+</stmt_exp>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_INDEX>
+<exp_SCOPE_NAME>generated</exp_SCOPE_NAME>
+<exp_BINARY op="SUB">
+<exp_SCOPE_NAME>index</exp_SCOPE_NAME>
+<exp_INTEGER>1</exp_INTEGER>
+</exp_BINARY>
+</exp_INDEX>
+<exp_SCOPE_NAME>result</exp_SCOPE_NAME>
+</exp_ASSIGN>
+</stmt_exp>
+</stmt_compound>
+</false_stmt>
+</stmt_if>
+</stmt_compound>
+</false_stmt>
+</stmt_if>
+</false_stmt>
+</stmt_if>
+<stmt_return>
+<exp_SCOPE_NAME>result</exp_SCOPE_NAME>
+</stmt_return>
+</stmt_compound>
+</decl_method_definition>
+</decl_class_definition>
+</decl_unit>
+</root>

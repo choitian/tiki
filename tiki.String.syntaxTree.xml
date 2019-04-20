@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root>
+<decl_unit>
+<decl_class_definition name="String">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="boolean"/>
+</decl_specifiers>
+<decl_declarator_method id="isEmpty"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_method id="length"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="boolean"/>
+</decl_specifiers>
+<decl_declarator_method id="equals">
+<decl_declaration>
+<decl_specifiers>
+<exp_SCOPE_NAME>String</exp_SCOPE_NAME>
+<decl_specifier kind="class" value=""/>
+</decl_specifiers>
+<decl_declarator_id id="anString"/>
+</decl_declaration>
+</decl_declarator_method>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="boolean"/>
+</decl_specifiers>
+<decl_declarator_method id="equalsIgnoreCase">
+<decl_declaration>
+<decl_specifiers>
+<exp_SCOPE_NAME>String</exp_SCOPE_NAME>
+<decl_specifier kind="class" value=""/>
+</decl_specifiers>
+<decl_declarator_id id="anotherString"/>
+</decl_declaration>
+</decl_declarator_method>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_method id="toInt">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="defaultValue"/>
+</decl_declaration>
+</decl_declarator_method>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<exp_SCOPE_NAME>String</exp_SCOPE_NAME>
+<decl_specifier kind="class" value=""/>
+</decl_specifiers>
+<decl_declarator_method id="substring">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="beginIndex"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="endIndex"/>
+</decl_declaration>
+</decl_declarator_method>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_method id="indexOf">
+<decl_declaration>
+<decl_specifiers>
+<exp_SCOPE_NAME>String</exp_SCOPE_NAME>
+<decl_specifier kind="class" value=""/>
+</decl_specifiers>
+<decl_declarator_id id="str"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="fromIndex"/>
+</decl_declaration>
+</decl_declarator_method>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<exp_SCOPE_NAME>String</exp_SCOPE_NAME>
+<decl_specifier kind="class" value=""/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="valueOf">
+<decl_declaration>
+<decl_specifiers>
+<exp_SCOPE_NAME>Object</exp_SCOPE_NAME>
+<decl_specifier kind="class" value=""/>
+</decl_specifiers>
+<decl_declarator_id id="value"/>
+</decl_declaration>
+</decl_declarator_method>
+</decl_declaration>
+</decl_class_definition>
+</decl_unit>
+</root>

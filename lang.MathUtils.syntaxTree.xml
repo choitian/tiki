@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root>
+<decl_unit>
+<decl_class_definition name="MathUtils">
+<decl_annotation key="@info">
+<name>"choi"</name>
+<time>"20190411"</time>
+<msg>"none"</msg>
+</decl_annotation>
+<decl_method_definition>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="void"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="qsort">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_array dimension="0">
+<decl_declarator_id id="a"/>
+</decl_declarator_array>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="low"/>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="high"/>
+</decl_declaration>
+</decl_declarator_method>
+<stmt_compound>
+<stmt_if>
+<test>
+<exp_BINARY op="GREATE">
+<exp_SCOPE_NAME>low</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>high</exp_SCOPE_NAME>
+</exp_BINARY>
+</test>
+<true_stmt>
+<stmt_compound>
+<stmt_return/>
+</stmt_compound>
+</true_stmt>
+</stmt_if>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="first"/>
+<decl_initializer>
+<exp_SCOPE_NAME>low</exp_SCOPE_NAME>
+</decl_initializer>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="last"/>
+<decl_initializer>
+<exp_SCOPE_NAME>high</exp_SCOPE_NAME>
+</decl_initializer>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="key"/>
+<decl_initializer>
+<exp_INDEX>
+<exp_SCOPE_NAME>a</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+</exp_INDEX>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>last</exp_SCOPE_NAME>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_while>
+<test>
+<exp_BINARY op="AND">
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>last</exp_SCOPE_NAME>
+</exp_BINARY>
+<exp_BINARY op="GREATE">
+<exp_INDEX>
+<exp_SCOPE_NAME>a</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>last</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_SCOPE_NAME>key</exp_SCOPE_NAME>
+</exp_BINARY>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_exp>
+<exp_INCREMENT op="POST_DEC">
+<exp_SCOPE_NAME>last</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_INDEX>
+<exp_SCOPE_NAME>a</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_INDEX>
+<exp_SCOPE_NAME>a</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>last</exp_SCOPE_NAME>
+</exp_INDEX>
+</exp_ASSIGN>
+</stmt_exp>
+<stmt_while>
+<test>
+<exp_BINARY op="AND">
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>last</exp_SCOPE_NAME>
+</exp_BINARY>
+<exp_BINARY op="LESSE">
+<exp_INDEX>
+<exp_SCOPE_NAME>a</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_SCOPE_NAME>key</exp_SCOPE_NAME>
+</exp_BINARY>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_exp>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+<stmt_exp>
+<exp_INCREMENT op="POST_DEC">
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+<stmt_exp>
+<exp_INCREMENT op="DEC">
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+<stmt_exp>
+<exp_INCREMENT op="DEC">
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+<exp_BINARY op="ADD">
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+<exp_INTEGER>2</exp_INTEGER>
+</exp_BINARY>
+</exp_ASSIGN>
+</stmt_exp>
+<stmt_exp>
+<exp_INCREMENT op="INC">
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_INDEX>
+<exp_SCOPE_NAME>a</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>last</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_INDEX>
+<exp_SCOPE_NAME>a</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+</exp_INDEX>
+</exp_ASSIGN>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_INDEX>
+<exp_SCOPE_NAME>a</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_SCOPE_NAME>key</exp_SCOPE_NAME>
+</exp_ASSIGN>
+</stmt_exp>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>qsort</exp_SCOPE_NAME>
+</base>
+<exp_SCOPE_NAME>a</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>low</exp_SCOPE_NAME>
+<exp_BINARY op="SUB">
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+<exp_INTEGER>1</exp_INTEGER>
+</exp_BINARY>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>Math.qsort</exp_SCOPE_NAME>
+</base>
+<exp_SCOPE_NAME>a</exp_SCOPE_NAME>
+<exp_BINARY op="ADD">
+<exp_SCOPE_NAME>first</exp_SCOPE_NAME>
+<exp_INTEGER>1</exp_INTEGER>
+</exp_BINARY>
+<exp_SCOPE_NAME>high</exp_SCOPE_NAME>
+</exp_INVOKE>
+</stmt_exp>
+</stmt_compound>
+</decl_method_definition>
+</decl_class_definition>
+</decl_unit>
+</root>

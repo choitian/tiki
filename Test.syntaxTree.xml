@@ -1,0 +1,1215 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root>
+<decl_unit>
+<decl_import package="lang.MathUtils"/>
+<decl_import package="lang.FibonacciSequenceGenerator"/>
+<decl_class_definition name="Test">
+<decl_method_definition>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="void"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="test__qsort"/>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_array dimension="0">
+<decl_declarator_id id="result"/>
+</decl_declarator_array>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="size"/>
+<decl_initializer>
+<exp_INTEGER>10</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>result</exp_SCOPE_NAME>
+<exp_NEWA>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<exp_SCOPE_NAME>size</exp_SCOPE_NAME>
+</exp_NEWA>
+</exp_ASSIGN>
+</stmt_exp>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="i"/>
+<decl_initializer>
+<exp_INTEGER>0</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>size</exp_SCOPE_NAME>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_compound>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_INDEX>
+<exp_SCOPE_NAME>result</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>Math.random</exp_SCOPE_NAME>
+</base>
+<exp_INTEGER>0</exp_INTEGER>
+<exp_INTEGER>9999</exp_INTEGER>
+</exp_INVOKE>
+</exp_ASSIGN>
+</stmt_exp>
+</stmt_compound>
+<stmt_exp>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"result initialized:"</exp_STRING>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="i"/>
+<decl_initializer>
+<exp_INTEGER>0</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>result.length</exp_SCOPE_NAME>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"%5d "</exp_STRING>
+<exp_INDEX>
+<exp_SCOPE_NAME>result</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_exp>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"\n"</exp_STRING>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>MathUtils.qsort</exp_SCOPE_NAME>
+</base>
+<exp_SCOPE_NAME>result</exp_SCOPE_NAME>
+<exp_INTEGER>0</exp_INTEGER>
+<exp_BINARY op="SUB">
+<exp_SCOPE_NAME>result.length</exp_SCOPE_NAME>
+<exp_INTEGER>1</exp_INTEGER>
+</exp_BINARY>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"result initialized:"</exp_STRING>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="i"/>
+<decl_initializer>
+<exp_INTEGER>0</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>result.length</exp_SCOPE_NAME>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"%5d "</exp_STRING>
+<exp_INDEX>
+<exp_SCOPE_NAME>result</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+</exp_INVOKE>
+</stmt_exp>
+</stmt_compound>
+<stmt_exp>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"\n"</exp_STRING>
+</exp_INVOKE>
+</stmt_exp>
+</stmt_compound>
+</decl_method_definition>
+<decl_method_definition>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="void"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="test__FibonacciSequence"/>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_array dimension="0">
+<decl_declarator_id id="result"/>
+</decl_declarator_array>
+<decl_initializer>
+<exp_NEWA>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<exp_INTEGER>15</exp_INTEGER>
+</exp_NEWA>
+</decl_initializer>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<exp_SCOPE_NAME>FibonacciSequenceGenerator</exp_SCOPE_NAME>
+<decl_specifier kind="class" value=""/>
+</decl_specifiers>
+<decl_declarator_id id="fsg"/>
+<decl_initializer>
+<exp_NEW>
+<decl_specifiers>
+<exp_SCOPE_NAME>FibonacciSequenceGenerator</exp_SCOPE_NAME>
+<decl_specifier kind="class" value=""/>
+</decl_specifiers>
+<exp_SCOPE_NAME>result.length</exp_SCOPE_NAME>
+</exp_NEW>
+</decl_initializer>
+</decl_declaration>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"fsg.nn: %5d\n"</exp_STRING>
+<exp_SCOPE_NAME>fsg.nn</exp_SCOPE_NAME>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"fsg.nn: %5d\n"</exp_STRING>
+<exp_SCOPE_NAME>fsg.nnn</exp_SCOPE_NAME>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"fsg.nn: %5d\n"</exp_STRING>
+<exp_SCOPE_NAME>FibonacciSequenceGenerator.nnn</exp_SCOPE_NAME>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="i"/>
+<decl_initializer>
+<exp_INTEGER>0</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>result.length</exp_SCOPE_NAME>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_compound>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_INDEX>
+<exp_SCOPE_NAME>result</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>fsg.generate</exp_SCOPE_NAME>
+</base>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INVOKE>
+</exp_ASSIGN>
+</stmt_exp>
+</stmt_compound>
+<stmt_exp>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"result initialized:"</exp_STRING>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="i"/>
+<decl_initializer>
+<exp_INTEGER>0</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>result.length</exp_SCOPE_NAME>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"%5d "</exp_STRING>
+<exp_INDEX>
+<exp_SCOPE_NAME>result</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+</exp_INVOKE>
+</stmt_exp>
+</stmt_compound>
+<stmt_exp>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"\n"</exp_STRING>
+</exp_INVOKE>
+</stmt_exp>
+</stmt_compound>
+</decl_method_definition>
+<decl_method_definition>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="void"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="test__PI"/>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="float"/>
+</decl_specifiers>
+<decl_declarator_id id="PI"/>
+<decl_initializer>
+<exp_INTEGER>4</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="boolean"/>
+</decl_specifiers>
+<decl_declarator_id id="plus"/>
+<decl_initializer>
+<exp_BOOLEAN>false</exp_BOOLEAN>
+</decl_initializer>
+</decl_declaration>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="i"/>
+<decl_initializer>
+<exp_INTEGER>3</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_INTEGER>99999</exp_INTEGER>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_compound>
+<stmt_if>
+<test>
+<exp_SCOPE_NAME>plus</exp_SCOPE_NAME>
+</test>
+<true_stmt>
+<stmt_compound>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>PI</exp_SCOPE_NAME>
+<exp_BINARY op="ADD">
+<exp_SCOPE_NAME>PI</exp_SCOPE_NAME>
+<exp_BINARY op="DIV">
+<exp_FLOATING>4.0</exp_FLOATING>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_BINARY>
+</exp_BINARY>
+</exp_ASSIGN>
+</stmt_exp>
+</stmt_compound>
+</true_stmt>
+<false_stmt>
+<stmt_compound>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>PI</exp_SCOPE_NAME>
+<exp_BINARY op="SUB">
+<exp_SCOPE_NAME>PI</exp_SCOPE_NAME>
+<exp_BINARY op="DIV">
+<exp_FLOATING>4.0</exp_FLOATING>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_BINARY>
+</exp_BINARY>
+</exp_ASSIGN>
+</stmt_exp>
+</stmt_compound>
+</false_stmt>
+</stmt_if>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>plus</exp_SCOPE_NAME>
+<exp_NOT>
+<exp_SCOPE_NAME>plus</exp_SCOPE_NAME>
+</exp_NOT>
+</exp_ASSIGN>
+</stmt_exp>
+</stmt_compound>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_BINARY op="ADD">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_INTEGER>2</exp_INTEGER>
+</exp_BINARY>
+</exp_ASSIGN>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"%f\n"</exp_STRING>
+<exp_SCOPE_NAME>PI</exp_SCOPE_NAME>
+</exp_INVOKE>
+</stmt_exp>
+</stmt_compound>
+</decl_method_definition>
+<decl_method_definition>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="void"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="test__MultidimensionalArrayA"/>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_array dimension="0">
+<decl_declarator_id id="dimensional_1"/>
+</decl_declarator_array>
+<decl_initializer>
+<decl_array_initializer>
+<decl_initializer>
+<exp_INTEGER>3</exp_INTEGER>
+</decl_initializer>
+<decl_initializer>
+<exp_INTEGER>6</exp_INTEGER>
+</decl_initializer>
+<decl_initializer>
+<exp_INTEGER>9</exp_INTEGER>
+</decl_initializer>
+</decl_array_initializer>
+</decl_initializer>
+</decl_declaration>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_array dimension="0">
+<decl_declarator_id id="dimensional_3"/>
+</decl_declarator_array>
+<decl_initializer>
+<decl_array_initializer>
+<decl_initializer>
+<decl_array_initializer>
+<decl_initializer>
+<decl_array_initializer>
+<decl_initializer>
+<exp_INTEGER>1</exp_INTEGER>
+</decl_initializer>
+<decl_initializer>
+<exp_INTEGER>2</exp_INTEGER>
+</decl_initializer>
+<decl_initializer>
+<exp_INTEGER>3</exp_INTEGER>
+</decl_initializer>
+<decl_initializer>
+<exp_INTEGER>4</exp_INTEGER>
+</decl_initializer>
+<decl_initializer>
+<exp_INTEGER>5</exp_INTEGER>
+</decl_initializer>
+</decl_array_initializer>
+</decl_initializer>
+<decl_initializer>
+<exp_SCOPE_NAME>dimensional_1</exp_SCOPE_NAME>
+</decl_initializer>
+</decl_array_initializer>
+</decl_initializer>
+<decl_initializer>
+<decl_array_initializer>
+<decl_initializer>
+<decl_array_initializer>
+<decl_initializer>
+<exp_INTEGER>1</exp_INTEGER>
+</decl_initializer>
+<decl_initializer>
+<exp_INTEGER>2</exp_INTEGER>
+</decl_initializer>
+<decl_initializer>
+<exp_INTEGER>3</exp_INTEGER>
+</decl_initializer>
+<decl_initializer>
+<exp_INTEGER>4</exp_INTEGER>
+</decl_initializer>
+<decl_initializer>
+<exp_INTEGER>5</exp_INTEGER>
+</decl_initializer>
+</decl_array_initializer>
+</decl_initializer>
+<decl_initializer>
+<decl_array_initializer/>
+</decl_initializer>
+<decl_initializer>
+<decl_array_initializer>
+<decl_initializer>
+<exp_INTEGER>1</exp_INTEGER>
+</decl_initializer>
+<decl_initializer>
+<exp_INTEGER>1</exp_INTEGER>
+</decl_initializer>
+<decl_initializer>
+<exp_INTEGER>1</exp_INTEGER>
+</decl_initializer>
+</decl_array_initializer>
+</decl_initializer>
+</decl_array_initializer>
+</decl_initializer>
+</decl_array_initializer>
+</decl_initializer>
+</decl_declaration>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="i"/>
+<decl_initializer>
+<exp_INTEGER>0</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>dimensional_3.length</exp_SCOPE_NAME>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_compound>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="j"/>
+<decl_initializer>
+<exp_INTEGER>0</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>j</exp_SCOPE_NAME>
+<exp_FSELECT name="length">
+<base>
+<exp_INDEX>
+<exp_SCOPE_NAME>dimensional_3</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+</base>
+</exp_FSELECT>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_compound>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="k"/>
+<decl_initializer>
+<exp_INTEGER>0</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>k</exp_SCOPE_NAME>
+<exp_FSELECT name="length">
+<base>
+<exp_INDEX>
+<exp_INDEX>
+<exp_SCOPE_NAME>dimensional_3</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_SCOPE_NAME>j</exp_SCOPE_NAME>
+</exp_INDEX>
+</base>
+</exp_FSELECT>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"dimensional_3[%d][%d][%d] = %d\n"</exp_STRING>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>j</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>k</exp_SCOPE_NAME>
+<exp_INDEX>
+<exp_INDEX>
+<exp_INDEX>
+<exp_SCOPE_NAME>dimensional_3</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_SCOPE_NAME>j</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_SCOPE_NAME>k</exp_SCOPE_NAME>
+</exp_INDEX>
+</exp_INVOKE>
+</stmt_exp>
+</stmt_compound>
+<stmt_exp>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>k</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+</stmt_compound>
+<stmt_exp>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>j</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+</stmt_compound>
+<stmt_exp>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+</stmt_compound>
+</decl_method_definition>
+<decl_method_definition>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="void"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="test__MultidimensionalArrayB"/>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_array dimension="0">
+<decl_declarator_id id="dimensional_3"/>
+</decl_declarator_array>
+</decl_declaration>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>dimensional_3</exp_SCOPE_NAME>
+<exp_NEWA>
+<decl_specifiers>
+<exp_SCOPE_NAME>Object</exp_SCOPE_NAME>
+<decl_specifier kind="class" value=""/>
+</decl_specifiers>
+<exp_INTEGER>2</exp_INTEGER>
+</exp_NEWA>
+</exp_ASSIGN>
+</stmt_exp>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="i"/>
+<decl_initializer>
+<exp_INTEGER>0</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>dimensional_3.length</exp_SCOPE_NAME>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_compound>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_INDEX>
+<exp_SCOPE_NAME>dimensional_3</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_NEWA>
+<decl_specifiers>
+<exp_SCOPE_NAME>Object</exp_SCOPE_NAME>
+<decl_specifier kind="class" value=""/>
+</decl_specifiers>
+<exp_INTEGER>3</exp_INTEGER>
+</exp_NEWA>
+</exp_ASSIGN>
+</stmt_exp>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="j"/>
+<decl_initializer>
+<exp_INTEGER>0</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>j</exp_SCOPE_NAME>
+<exp_FSELECT name="length">
+<base>
+<exp_INDEX>
+<exp_SCOPE_NAME>dimensional_3</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+</base>
+</exp_FSELECT>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_compound>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_INDEX>
+<exp_INDEX>
+<exp_SCOPE_NAME>dimensional_3</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_SCOPE_NAME>j</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_NEWA>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<exp_INTEGER>4</exp_INTEGER>
+</exp_NEWA>
+</exp_ASSIGN>
+</stmt_exp>
+</stmt_compound>
+<stmt_exp>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>j</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+</stmt_compound>
+<stmt_exp>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="i"/>
+<decl_initializer>
+<exp_INTEGER>0</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>dimensional_3.length</exp_SCOPE_NAME>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_compound>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="j"/>
+<decl_initializer>
+<exp_INTEGER>0</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>j</exp_SCOPE_NAME>
+<exp_FSELECT name="length">
+<base>
+<exp_INDEX>
+<exp_SCOPE_NAME>dimensional_3</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+</base>
+</exp_FSELECT>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_compound>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="k"/>
+<decl_initializer>
+<exp_INTEGER>0</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>k</exp_SCOPE_NAME>
+<exp_FSELECT name="length">
+<base>
+<exp_INDEX>
+<exp_INDEX>
+<exp_SCOPE_NAME>dimensional_3</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_SCOPE_NAME>j</exp_SCOPE_NAME>
+</exp_INDEX>
+</base>
+</exp_FSELECT>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"dimensional_3[%d][%d][%d] = %d\n"</exp_STRING>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>j</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>k</exp_SCOPE_NAME>
+<exp_INDEX>
+<exp_INDEX>
+<exp_INDEX>
+<exp_SCOPE_NAME>dimensional_3</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_SCOPE_NAME>j</exp_SCOPE_NAME>
+</exp_INDEX>
+<exp_SCOPE_NAME>k</exp_SCOPE_NAME>
+</exp_INDEX>
+</exp_INVOKE>
+</stmt_exp>
+</stmt_compound>
+<stmt_exp>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>k</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+</stmt_compound>
+<stmt_exp>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>j</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+</stmt_compound>
+<stmt_exp>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+</stmt_compound>
+</decl_method_definition>
+<decl_method_definition>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="void"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="test__VarargA">
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="size"/>
+</decl_declaration>
+<decl_vararg_parameter name="maxs">
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+</decl_vararg_parameter>
+</decl_declarator_method>
+<stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"size = %d\n"</exp_STRING>
+<exp_SCOPE_NAME>size</exp_SCOPE_NAME>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="i"/>
+<decl_initializer>
+<exp_INTEGER>0</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_exp>
+<exp_ASSIGN>
+<exp_SCOPE_NAME>size</exp_SCOPE_NAME>
+<exp_INTEGER>777</exp_INTEGER>
+</exp_ASSIGN>
+</stmt_exp>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>maxs.length</exp_SCOPE_NAME>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"maxs[%d] = %d\n"</exp_STRING>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_INDEX>
+<exp_SCOPE_NAME>maxs</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+</exp_INVOKE>
+</stmt_exp>
+</stmt_compound>
+<stmt_exp>
+<exp_COMMA>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INCREMENT>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>size</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</exp_COMMA>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"size = %d\n"</exp_STRING>
+<exp_SCOPE_NAME>size</exp_SCOPE_NAME>
+</exp_INVOKE>
+</stmt_exp>
+</stmt_compound>
+</decl_method_definition>
+<decl_method_definition>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="void"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="test__VarargB">
+<decl_vararg_parameter name="maxs">
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+</decl_vararg_parameter>
+</decl_declarator_method>
+<stmt_compound>
+<stmt_compound>
+<decl_declaration>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+</decl_specifiers>
+<decl_declarator_id id="i"/>
+<decl_initializer>
+<exp_INTEGER>0</exp_INTEGER>
+</decl_initializer>
+</decl_declaration>
+<stmt_while>
+<test>
+<exp_BINARY op="LESS">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>maxs.length</exp_SCOPE_NAME>
+</exp_BINARY>
+</test>
+<loop_stmt>
+<stmt_compound>
+<stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
+</base>
+<exp_STRING>"maxs[%d] = %d\n"</exp_STRING>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+<exp_INDEX>
+<exp_SCOPE_NAME>maxs</exp_SCOPE_NAME>
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INDEX>
+</exp_INVOKE>
+</stmt_exp>
+</stmt_compound>
+<stmt_exp>
+<exp_INCREMENT op="POST_INC">
+<exp_SCOPE_NAME>i</exp_SCOPE_NAME>
+</exp_INCREMENT>
+</stmt_exp>
+</stmt_compound>
+</loop_stmt>
+</stmt_while>
+</stmt_compound>
+</stmt_compound>
+</decl_method_definition>
+<decl_method_definition>
+<decl_specifiers>
+<decl_specifier kind="primitive" value="int"/>
+<decl_specifier value="static"/>
+</decl_specifiers>
+<decl_declarator_method id="main"/>
+<stmt_compound>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>test__qsort</exp_SCOPE_NAME>
+</base>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>test__FibonacciSequence</exp_SCOPE_NAME>
+</base>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>test__PI</exp_SCOPE_NAME>
+</base>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>test__MultidimensionalArrayA</exp_SCOPE_NAME>
+</base>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>test__MultidimensionalArrayB</exp_SCOPE_NAME>
+</base>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>test__VarargA</exp_SCOPE_NAME>
+</base>
+<exp_INTEGER>666</exp_INTEGER>
+<exp_INTEGER>1</exp_INTEGER>
+<exp_INTEGER>3</exp_INTEGER>
+<exp_INTEGER>5</exp_INTEGER>
+<exp_INTEGER>7</exp_INTEGER>
+<exp_INTEGER>11</exp_INTEGER>
+</exp_INVOKE>
+</stmt_exp>
+<stmt_exp>
+<exp_INVOKE>
+<base>
+<exp_SCOPE_NAME>test__VarargB</exp_SCOPE_NAME>
+</base>
+<exp_INTEGER>666</exp_INTEGER>
+<exp_INTEGER>1</exp_INTEGER>
+<exp_INTEGER>3</exp_INTEGER>
+<exp_INTEGER>5</exp_INTEGER>
+<exp_INTEGER>7</exp_INTEGER>
+<exp_INTEGER>11</exp_INTEGER>
+</exp_INVOKE>
+</stmt_exp>
+</stmt_compound>
+</decl_method_definition>
+</decl_class_definition>
+</decl_unit>
+</root>
