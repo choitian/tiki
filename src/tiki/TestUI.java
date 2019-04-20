@@ -65,7 +65,7 @@ public class TestUI extends Application {
 			int debugSourceSnippetLineRange = 3;
 			return new Parser(lalr_is, new LexicalAnalyzer(dfa, debugSourceSnippetLineRange));
 		} catch (Exception e) {
-			throw new IllegalArgumentException("initializeParser failed." + e.getMessage());
+			throw new IllegalArgumentException("error: initializeParser failed." + e.getMessage());
 		}
 	}
 
