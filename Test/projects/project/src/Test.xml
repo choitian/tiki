@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package>
+<source>78DA9D565B6FDB36147E5680FC07D6800029A665F99215B3E601C386017DC85A20C330C0D50325D1316D594A45DA4966F8BFEFF0264BB21DAC6B1199E77E7878BE43B2ED735909B4A2F973F027E5E2D79C701EDDDEA4F21749CEEDCDE1F6C6190E47B8A2E9AEE2AC2CD00315AB32E3C39C2515A9DE6A3A2D0B2EAA5D2A2C07EF09283C714307CAD31817F40591AA226F431507AB352A9748915A6B82750E5BBA4D6835437F918A9124A71C5BDF5A7EC6471515BBAA68FA9A622E8860296ABAE4B33353A57C8FC58A715456A8288B815A9334A55C4A8D9B7DC932C457E5CB1FF4557875DD1088A1983E28CA9A39AC100814E79A1F14A01C3C51A18C7C4DB22C929A8F6F5CD06DF05C8189D77B4F7D86DCEC6BD1C32CF395A5FC6B9F1E12DBE7764CF951CAC361870B7AC52ECFAFE6D0090FE4DF9E6F537847E594DB7940484F4A8F9D720AC8FF174F968CB37F28968B2008D096BC725550E73CC7AFC5DDDD9DB2835FC8C88FD095922C6224522E770B9D57B317D27990D3E249ACE2481B2ECB4A25C1E661C47E0223238FD89CF54732137DB60E88162C362EDBE13C5953ACB62123809AAE87C3961E432E1AA3F91C85CA97F5137CE38043CF1015E5BB5CE010B76893091AA091F147734EB597072256FFCF87CAE9439DCFA191D56014D787A69C680B7972FA23B9A71275D4C3F8425BB50B15143B89C4CF4B45D9BE7A4FC737C774E18C35F874EC5352C3894EA3A30C93CC6244896B302B962ECDCB8AE5D48379461BC7DEDE0EB8F1DCCC9FF530AC028B494712D2A36768CB8490525443A63E01E0CEE73AB4AE7F5251B28994E1D1B9D0FA7CB7BD522E909CD0574757B82AE42C9A4496162B49DFD7F42296FFB790047B357D0DECC5385E8065BC00F5B876DC8689B6B98614ABBB06DDB5D185EEB0EAEB7EBFD57A567D03EA9B937AC362632DAC8963B458BC58C78B8D44A52773B81B8521EA236FADD772B9E9DBC6D72D6CBAB91E1C6A53601F46769B51C44CBCC309303FCF516BD3AD633BDB75D4DA2038F8E09D17C2373EECD9DBBEF90F05E954A3DD2A6E38C9500F774A648B6062381BD8F3060A346A15C781C331886B16AA3B867B12964EAB847BA40B989744A0E55E114959E6941428D95F980C6E86DD25761375B9EDF1728F93FDA991B59F2F9F640307A369DDB33C253905E64779B6C0F0BF7C8A9A792CE51406B9C447A0D67D34D57BB422FD3B38A95C981781BE532D24948904830DD5DECA00F2BC03740242C3FB60BCC4BFB3A42CE011C11EE9B71D2D52BA70B3B8BE46E516B0F73959D354F89E07D63E982BB68F55A82EC6CFFC794AAD71ED3E0A48E509069C9C393D92A4195D3EF52E959D63374308C0E1BA6872BADA2BD90B612857A6CB3C1F4B2D34F123A7395F748CFA19511F7292A8090B83AD965D18C4E6C2409DC7C4A54C13E4263D2C0DCCAC6CAED5CDD3C84C0F3442C0F761827FC03F1E2FCE39B88A0D6A0E87111EE3099EE27B7CC484E0C3117ECF64477C0036D047233C46D7E6E1F87B06E258DED1DF3111C71AC9D74762BB78D608FACEFE4165CC5312AFF106B7DC360644774A76DF6DEAE1168623AF7EF6B623B34223CBA8CDD4F3CEB6996CDACE63D0BE00A3360BC62D2BBCF6D35A657842366C68F451F1F45B5221077A38C463F999C8CF143E0D949CCFB1CBA2A27C01687099F36F44D00068AFF706FF060F0F832C43ABD56CBB9D71DEF3ED768EFF02A1C9C672</source>
+<import package="help.TestClass"/>
+<import package="tiki.util.System"/>
+<import package="tiki.util.Math"/>
+<import package="tiki.String"/>
+<import package="tiki.util.Date"/>
+<class name="Test">
+<member kind="method" name="showNext">
+<ins>LOCAL C@49 C@49 C@49 C@52 C@49 C@49 C@49 C@52 C@49 C@49 C@49 C@49 C@52 C@49 C@49 C@49 C@49 C@49 C@52</ins>
+<ins>REF V@1 V@-2 C@5B6C696E653A31315D</ins>
+<ins>ADD_I V@1 V@1 C@32</ins>
+<ins>REF V@2 S@help.TestClass C@5B6C696E653A31315D</ins>
+<ins>ADD_I V@2 V@2 C@32</ins>
+<ins>ESP</ins>
+<ins>INVOKE R@1 R@2</ins>
+<ins>BSP V@3</ins>
+<ins>REF V@4 V@3 C@5B6C696E653A31315D</ins>
+<ins>ADD_I V@4 V@4 C@32</ins>
+<ins>REF V@5 R@4 C@5B6C696E653A31315D</ins>
+<ins>ADD_I V@5 V@5 C@30</ins>
+<ins>MOV V@0 R@5</ins>
+<ins>REF V@6 S@tiki.util.System C@5B6C696E653A31325D</ins>
+<ins>ADD_I V@6 V@6 C@30</ins>
+<ins>ESP</ins>
+<ins>VARARGS V@0</ins>
+<ins>ARG C@73746172742E6E6578742E6765744E65787428292E6E6578742E69643A2025640A</ins>
+<ins>INVOKE null R@6</ins>
+<ins>BSP null</ins>
+<ins>REF V@8 V@-2 C@5B6C696E653A31345D</ins>
+<ins>ADD_I V@8 V@8 C@32</ins>
+<ins>REF V@9 R@8 C@5B6C696E653A31345D</ins>
+<ins>ADD_I V@9 V@9 C@32</ins>
+<ins>MOV V@7 R@9</ins>
+<ins>REF V@10 S@tiki.util.System C@5B6C696E653A31365D</ins>
+<ins>ADD_I V@10 V@10 C@30</ins>
+<ins>REF V@11 S@help.TestClass C@5B6C696E653A31365D</ins>
+<ins>ADD_I V@11 V@11 C@32</ins>
+<ins>ESP</ins>
+<ins>INVOKE V@-2 R@11</ins>
+<ins>BSP V@12</ins>
+<ins>REF V@13 V@12 C@5B6C696E653A31365D</ins>
+<ins>ADD_I V@13 V@13 C@32</ins>
+<ins>REF V@14 S@help.TestClass C@5B6C696E653A31365D</ins>
+<ins>ADD_I V@14 V@14 C@33</ins>
+<ins>ESP</ins>
+<ins>INVOKE R@13 R@14</ins>
+<ins>BSP V@15</ins>
+<ins>ESP</ins>
+<ins>VARARGS V@15</ins>
+<ins>ARG C@73746172742E6765744E65787428292E6E6578742E6765745828293A2025640A</ins>
+<ins>INVOKE null R@10</ins>
+<ins>BSP null</ins>
+<ins>REF V@16 V@-2 C@5B6C696E653A31385D</ins>
+<ins>ADD_I V@16 V@16 C@32</ins>
+<ins>REF V@17 R@16 C@5B6C696E653A31385D</ins>
+<ins>ADD_I V@17 V@17 C@32</ins>
+<ins>MOV R@17 V@7</ins>
+<ins>MOV V@18 R@17</ins>
+<ins>RET</ins>
+</member>
+<member kind="method" name="testA">
+<ins>LOCAL C@49 C@52 C@49 C@52 C@49 C@49 C@52 C@49 C@49 C@49 C@52 C@52 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@42 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@52 C@42 C@49 C@49 C@49 C@42 C@49 C@49 C@49 C@49 C@49 C@52 C@49 C@49 C@52 C@49 C@49 C@49 C@52 C@49 C@49 C@49 C@49 C@49 C@52 C@52 C@42 C@49 C@49 C@49 C@49 C@52 C@52 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@42 C@49 C@49 C@49 C@42 C@49 C@49 C@49 C@42 C@49 C@49 C@42 C@49 C@49 C@49 C@42 C@42 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@42 C@49 C@49 C@49 C@49 C@46 C@42 C@49 C@46 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@52 C@52 C@49 C@46 C@46 C@52 C@49 C@49 C@52 C@49 C@52 C@49 C@49 C@49 C@52 C@42 C@42 C@52 C@49 C@52 C@49 C@42 C@49 C@42 C@52 C@52 C@49 C@52 C@52 C@49 C@52 C@49 C@52 C@49 C@52 C@49 C@52 C@49 C@52 C@49 C@52 C@49 C@52 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@42 C@49 C@49 C@49 C@42 C@49 C@49 C@49 C@42</ins>
+<ins>REF V@0 S@tiki.util.System C@5B6C696E653A32325D</ins>
+<ins>ADD_I V@0 V@0 C@30</ins>
+<ins>ESP</ins>
+<ins>ARG C@0A2A2A2A74657374412A2A2A0A</ins>
+<ins>INVOKE null R@0</ins>
+<ins>BSP null</ins>
+<ins>SUB_I V@2 V@-3 C@31</ins>
+<ins>NEWA V@3 C@52 R@2</ins>
+<ins>MOV V@1 V@3</ins>
+<ins>MOV V@4 C@30</ins>
+<ins>JUMP C@3834</ins>
+<ins>REF V@5 V@1 C@5B6C696E653A32375D</ins>
+<ins>ADD_I V@5 V@5 V@4</ins>
+<ins>NEW V@6 C@34</ins>
+<ins>MOV V@7 V@6</ins>
+<ins>MOV R@7 C@30</ins>
+<ins>ADD_I V@7 V@7 C@31</ins>
+<ins>MOV R@7 C@66616C7365</ins>
+<ins>ADD_I V@7 V@7 C@31</ins>
+<ins>MOV R@7 null</ins>
+<ins>ADD_I V@7 V@7 C@31</ins>
+<ins>MOV R@7 null</ins>
+<ins>ADD_I V@7 V@7 C@31</ins>
+<ins>REF V@8 V@-3 C@5B6C696E653A32375D</ins>
+<ins>ADD_I V@8 V@8 V@4</ins>
+<ins>REF V@9 S@help.TestClass C@5B6C696E653A32375D</ins>
+<ins>ADD_I V@9 V@9 C@30</ins>
+<ins>ESP</ins>
+<ins>ARG R@8</ins>
+<ins>ARG V@-2</ins>
+<ins>ARG null</ins>
+<ins>INVOKE V@6 R@9</ins>
+<ins>BSP V@10</ins>
+<ins>MOV R@5 V@6</ins>
+<ins>MOV V@11 R@5</ins>
+<ins>JUMP C@3232</ins>
+<ins>REF V@12 V@1 C@5B6C696E653A32395D</ins>
+<ins>ADD_I V@12 V@12 V@4</ins>
+<ins>REF V@13 S@help.TestClass C@5B6C696E653A32395D</ins>
+<ins>ADD_I V@13 V@13 C@36</ins>
+<ins>REF V@14 V@1 C@5B6C696E653A32395D</ins>
+<ins>ADD_I V@14 V@14 V@4</ins>
+<ins>REF V@15 R@14 C@5B6C696E653A32395D</ins>
+<ins>ADD_I V@15 V@15 C@33</ins>
+<ins>REF V@16 V@1 C@5B6C696E653A32395D</ins>
+<ins>ADD_I V@16 V@16 V@4</ins>
+<ins>REF V@17 R@16 C@5B6C696E653A32395D</ins>
+<ins>ADD_I V@17 V@17 C@33</ins>
+<ins>SUB_I V@18 R@17 C@31</ins>
+<ins>SUB_I V@19 R@18 C@31</ins>
+<ins>ESP</ins>
+<ins>ARG V@19</ins>
+<ins>ARG C@30</ins>
+<ins>ARG R@15</ins>
+<ins>INVOKE R@12 R@13</ins>
+<ins>BSP null</ins>
+<ins>JUMP C@3232</ins>
+<ins>MOD_I V@20 V@4 C@32</ins>
+<ins>EQUAL_I V@21 V@20 C@30</ins>
+<ins>TRUEJUMP C@2D3233 V@21</ins>
+<ins>REF V@22 S@tiki.util.Math C@5B6C696E653A33315D</ins>
+<ins>ADD_I V@22 V@22 C@37</ins>
+<ins>REF V@23 V@1 C@5B6C696E653A33315D</ins>
+<ins>ADD_I V@23 V@23 V@4</ins>
+<ins>REF V@24 R@23 C@5B6C696E653A33315D</ins>
+<ins>ADD_I V@24 V@24 C@33</ins>
+<ins>REF V@25 V@1 C@5B6C696E653A33315D</ins>
+<ins>ADD_I V@25 V@25 V@4</ins>
+<ins>REF V@26 R@25 C@5B6C696E653A33315D</ins>
+<ins>ADD_I V@26 V@26 C@33</ins>
+<ins>SUB_I V@27 R@26 C@31</ins>
+<ins>SUB_I V@28 R@27 C@31</ins>
+<ins>ESP</ins>
+<ins>ARG V@28</ins>
+<ins>ARG C@30</ins>
+<ins>ARG R@24</ins>
+<ins>INVOKE null R@22</ins>
+<ins>BSP null</ins>
+<ins>JUMP C@3131</ins>
+<ins>SUB_I V@29 V@4 C@31</ins>
+<ins>REF V@30 V@1 C@5B6C696E653A33345D</ins>
+<ins>ADD_I V@30 V@30 V@29</ins>
+<ins>REF V@31 R@30 C@5B6C696E653A33345D</ins>
+<ins>ADD_I V@31 V@31 C@32</ins>
+<ins>REF V@32 V@1 C@5B6C696E653A33345D</ins>
+<ins>ADD_I V@32 V@32 V@4</ins>
+<ins>MOV R@31 R@32</ins>
+<ins>MOV V@33 R@31</ins>
+<ins>JUMP C@33</ins>
+<ins>UNEQUAL_I V@34 V@4 C@30</ins>
+<ins>TRUEJUMP C@2D3131 V@34</ins>
+<ins>ADD_I V@35 V@4 C@31</ins>
+<ins>MOV V@4 V@35</ins>
+<ins>MOV V@36 V@4</ins>
+<ins>SUB_I V@37 V@1 C@31</ins>
+<ins>LESS_I V@38 V@4 R@37</ins>
+<ins>TRUEJUMP C@2D3835 V@38</ins>
+<ins>SUB_I V@39 V@1 C@31</ins>
+<ins>SUB_I V@40 R@39 C@31</ins>
+<ins>REF V@41 V@1 C@5B6C696E653A33375D</ins>
+<ins>ADD_I V@41 V@41 V@40</ins>
+<ins>REF V@42 R@41 C@5B6C696E653A33375D</ins>
+<ins>ADD_I V@42 V@42 C@32</ins>
+<ins>REF V@43 V@1 C@5B6C696E653A33375D</ins>
+<ins>ADD_I V@43 V@43 C@30</ins>
+<ins>MOV R@42 R@43</ins>
+<ins>MOV V@44 R@42</ins>
+<ins>REF V@45 S@tiki.util.System C@5B6C696E653A33385D</ins>
+<ins>ADD_I V@45 V@45 C@30</ins>
+<ins>REF V@46 S@help.TestClass C@5B6C696E653A33385D</ins>
+<ins>ADD_I V@46 V@46 C@31</ins>
+<ins>ESP</ins>
+<ins>VARARGS R@46</ins>
+<ins>ARG C@68656C702E54657374436C6173732E6E756D6265724F66436C6173733A2025640A</ins>
+<ins>INVOKE null R@45</ins>
+<ins>BSP null</ins>
+<ins>SUB_I V@48 V@1 C@31</ins>
+<ins>DIV_I V@49 R@48 C@33</ins>
+<ins>REF V@50 V@1 C@5B6C696E653A34305D</ins>
+<ins>ADD_I V@50 V@50 V@49</ins>
+<ins>MOV V@47 R@50</ins>
+<ins>MOV V@51 V@47</ins>
+<ins>REF V@52 S@Test C@5B6C696E653A34325D</ins>
+<ins>ADD_I V@52 V@52 C@30</ins>
+<ins>ESP</ins>
+<ins>ARG V@47</ins>
+<ins>INVOKE null R@52</ins>
+<ins>BSP null</ins>
+<ins>JUMP C@3237</ins>
+<ins>REF V@53 S@tiki.util.System C@5B6C696E653A34355D</ins>
+<ins>ADD_I V@53 V@53 C@30</ins>
+<ins>REF V@54 V@51 C@5B6C696E653A34355D</ins>
+<ins>ADD_I V@54 V@54 C@30</ins>
+<ins>ESP</ins>
+<ins>VARARGS R@54</ins>
+<ins>ARG C@637572282564293A</ins>
+<ins>INVOKE null R@53</ins>
+<ins>BSP null</ins>
+<ins>REF V@55 S@help.TestClass C@5B6C696E653A34365D</ins>
+<ins>ADD_I V@55 V@55 C@35</ins>
+<ins>ESP</ins>
+<ins>INVOKE V@51 R@55</ins>
+<ins>BSP null</ins>
+<ins>REF V@56 S@help.TestClass C@5B6C696E653A34385D</ins>
+<ins>ADD_I V@56 V@56 C@32</ins>
+<ins>ESP</ins>
+<ins>INVOKE V@51 R@56</ins>
+<ins>BSP V@57</ins>
+<ins>MOV V@51 V@57</ins>
+<ins>MOV V@58 V@51</ins>
+<ins>JUMP C@33</ins>
+<ins>JUMP C@35</ins>
+<ins>JUMP C@33</ins>
+<ins>EQUAL_R V@59 V@51 V@47</ins>
+<ins>TRUEJUMP C@2D33 V@59</ins>
+<ins>TRUEJUMP C@2D3236 C@74727565</ins>
+<ins>REF V@60 S@tiki.util.System C@5B6C696E653A35325D</ins>
+<ins>ADD_I V@60 V@60 C@30</ins>
+<ins>REF V@61 S@help.TestClass C@5B6C696E653A35325D</ins>
+<ins>ADD_I V@61 V@61 C@34</ins>
+<ins>ESP</ins>
+<ins>VARARGS R@61</ins>
+<ins>ARG C@73756D3A2025640A</ins>
+<ins>INVOKE null R@60</ins>
+<ins>BSP null</ins>
+<ins>MOV V@62 C@33</ins>
+<ins>MOV V@63 C@35</ins>
+<ins>NEWA V@65 C@49 C@32 V@62 V@63</ins>
+<ins>MOV V@64 V@65</ins>
+<ins>MOV V@66 C@30</ins>
+<ins>JUMP C@3339</ins>
+<ins>MOV V@67 C@30</ins>
+<ins>JUMP C@3239</ins>
+<ins>MOV V@68 C@30</ins>
+<ins>JUMP C@3138</ins>
+<ins>REF V@69 V@64 C@5B6C696E653A36365D</ins>
+<ins>ADD_I V@69 V@69 V@66</ins>
+<ins>REF V@70 R@69 C@5B6C696E653A36365D</ins>
+<ins>ADD_I V@70 V@70 V@67</ins>
+<ins>REF V@71 R@70 C@5B6C696E653A36365D</ins>
+<ins>ADD_I V@71 V@71 V@68</ins>
+<ins>ADD_I V@72 V@66 C@31</ins>
+<ins>MUL_I V@73 V@72 C@313030</ins>
+<ins>ADD_I V@74 V@67 C@31</ins>
+<ins>MUL_I V@75 V@74 C@3130</ins>
+<ins>ADD_I V@76 V@73 V@75</ins>
+<ins>ADD_I V@77 V@68 C@31</ins>
+<ins>ADD_I V@78 V@76 V@77</ins>
+<ins>MOV R@71 V@78</ins>
+<ins>MOV V@79 R@71</ins>
+<ins>MOV V@80 V@68</ins>
+<ins>ADD_I V@68 V@68 C@31</ins>
+<ins>REF V@81 V@64 C@5B6C696E653A36345D</ins>
+<ins>ADD_I V@81 V@81 C@30</ins>
+<ins>REF V@82 R@81 C@5B6C696E653A36345D</ins>
+<ins>ADD_I V@82 V@82 C@30</ins>
+<ins>SUB_I V@83 R@82 C@31</ins>
+<ins>LESS_I V@84 V@68 R@83</ins>
+<ins>TRUEJUMP C@2D3233 V@84</ins>
+<ins>MOV V@85 V@67</ins>
+<ins>ADD_I V@67 V@67 C@31</ins>
+<ins>REF V@86 V@64 C@5B6C696E653A36325D</ins>
+<ins>ADD_I V@86 V@86 C@30</ins>
+<ins>SUB_I V@87 R@86 C@31</ins>
+<ins>LESS_I V@88 V@67 R@87</ins>
+<ins>TRUEJUMP C@2D3332 V@88</ins>
+<ins>ADD_I V@89 V@66 C@31</ins>
+<ins>MOV V@66 V@89</ins>
+<ins>MOV V@90 V@66</ins>
+<ins>SUB_I V@91 V@64 C@31</ins>
+<ins>LESS_I V@92 V@66 R@91</ins>
+<ins>TRUEJUMP C@2D3430 V@92</ins>
+<ins>MOV V@93 C@30</ins>
+<ins>JUMP C@3438</ins>
+<ins>JUMP C@33</ins>
+<ins>JUMP C@3437</ins>
+<ins>JUMP C@34</ins>
+<ins>SUB_I V@94 V@64 C@31</ins>
+<ins>GREATE_I V@95 V@93 R@94</ins>
+<ins>TRUEJUMP C@2D34 V@95</ins>
+<ins>MOV V@96 C@30</ins>
+<ins>JUMP C@3337</ins>
+<ins>JUMP C@33</ins>
+<ins>JUMP C@3336</ins>
+<ins>JUMP C@37</ins>
+<ins>REF V@97 V@64 C@5B6C696E653A37385D</ins>
+<ins>ADD_I V@97 V@97 C@30</ins>
+<ins>SUB_I V@98 R@97 C@31</ins>
+<ins>LESS_I V@99 V@96 R@98</ins>
+<ins>NOT V@100 V@99</ins>
+<ins>TRUEJUMP C@2D37 V@100</ins>
+<ins>MOV V@101 C@30</ins>
+<ins>JUMP C@3137</ins>
+<ins>REF V@102 S@tiki.util.System C@5B6C696E653A38325D</ins>
+<ins>ADD_I V@102 V@102 C@30</ins>
+<ins>REF V@103 V@64 C@5B6C696E653A38325D</ins>
+<ins>ADD_I V@103 V@103 V@93</ins>
+<ins>REF V@104 R@103 C@5B6C696E653A38325D</ins>
+<ins>ADD_I V@104 V@104 V@96</ins>
+<ins>REF V@105 R@104 C@5B6C696E653A38325D</ins>
+<ins>ADD_I V@105 V@105 V@101</ins>
+<ins>ESP</ins>
+<ins>VARARGS R@105</ins>
+<ins>ARG C@2530336420</ins>
+<ins>INVOKE null R@102</ins>
+<ins>BSP null</ins>
+<ins>ADD_I V@106 V@101 C@31</ins>
+<ins>MOV V@101 V@106</ins>
+<ins>MOV V@107 V@101</ins>
+<ins>REF V@108 V@64 C@5B6C696E653A38305D</ins>
+<ins>ADD_I V@108 V@108 C@30</ins>
+<ins>REF V@109 R@108 C@5B6C696E653A38305D</ins>
+<ins>ADD_I V@109 V@109 C@30</ins>
+<ins>SUB_I V@110 R@109 C@31</ins>
+<ins>LESS_I V@111 V@101 R@110</ins>
+<ins>TRUEJUMP C@2D3232 V@111</ins>
+<ins>MOV V@112 V@96</ins>
+<ins>ADD_I V@96 V@96 C@31</ins>
+<ins>JUMP C@2D3336</ins>
+<ins>MOV V@113 V@93</ins>
+<ins>ADD_I V@93 V@93 C@31</ins>
+<ins>JUMP C@2D3437</ins>
+<ins>REF V@114 S@tiki.util.System C@5B6C696E653A38395D</ins>
+<ins>ADD_I V@114 V@114 C@30</ins>
+<ins>ESP</ins>
+<ins>ARG C@0A</ins>
+<ins>INVOKE null R@114</ins>
+<ins>BSP null</ins>
+<ins>REF V@118 S@tiki.util.System C@5B6C696E653A39345D</ins>
+<ins>ADD_I V@118 V@118 C@30</ins>
+<ins>ESP</ins>
+<ins>VARARGS V@115 V@116 V@117</ins>
+<ins>ARG C@25642C25662C25620A</ins>
+<ins>INVOKE null R@118</ins>
+<ins>BSP null</ins>
+<ins>MOV V@119 C@332E3134</ins>
+<ins>F2I V@121 V@119</ins>
+<ins>ADD_I V@122 C@37 V@121</ins>
+<ins>MOV V@120 V@122</ins>
+<ins>REF V@124 S@Test C@5B6C696E653A39395D</ins>
+<ins>ADD_I V@124 V@124 C@33</ins>
+<ins>ADD_I V@125 R@124 C@3431</ins>
+<ins>MOV V@123 V@125</ins>
+<ins>REF V@126 S@Test C@5B6C696E653A3130305D</ins>
+<ins>ADD_I V@126 V@126 C@33</ins>
+<ins>SUB_I V@127 V@123 R@126</ins>
+<ins>MOV V@123 V@127</ins>
+<ins>MOV V@128 V@123</ins>
+<ins>REF V@129 S@help.TestClass C@5B6C696E653A3130315D</ins>
+<ins>ADD_I V@129 V@129 C@37</ins>
+<ins>NEWA V@130 C@49 V@123</ins>
+<ins>MOV R@129 V@130</ins>
+<ins>MOV V@131 R@129</ins>
+<ins>REF V@132 S@tiki.util.System C@5B6C696E653A3130345D</ins>
+<ins>ADD_I V@132 V@132 C@30</ins>
+<ins>SUB_F V@133 C@30 V@119</ins>
+<ins>MUL_F V@134 V@133 V@120</ins>
+<ins>MOV V@135 V@134</ins>
+<ins>REF V@136 S@help.TestClass C@5B6C696E653A3130345D</ins>
+<ins>ADD_I V@136 V@136 C@38</ins>
+<ins>ESP</ins>
+<ins>ARG V@123</ins>
+<ins>INVOKE null R@136</ins>
+<ins>BSP V@137</ins>
+<ins>ESP</ins>
+<ins>VARARGS V@120 V@135 V@123 V@137</ins>
+<ins>ARG C@2D5049202A2025643A202530352E32662C4669626F6E6163636953657175656E63655B25645D3A2025640A</ins>
+<ins>INVOKE null R@132</ins>
+<ins>BSP null</ins>
+<ins>MOV V@138 C@61626364656667</ins>
+<ins>REF V@139 S@tiki.util.System C@5B6C696E653A3130375D</ins>
+<ins>ADD_I V@139 V@139 C@30</ins>
+<ins>ADD_R V@140 V@138 C@313030</ins>
+<ins>REF V@141 S@tiki.String C@5B6C696E653A3130375D</ins>
+<ins>ADD_I V@141 V@141 C@31</ins>
+<ins>ESP</ins>
+<ins>INVOKE V@138 R@141</ins>
+<ins>BSP V@142</ins>
+<ins>MOD_I V@143 C@3130 C@33</ins>
+<ins>ESP</ins>
+<ins>VARARGS V@140 V@142 V@143</ins>
+<ins>ARG C@25732C25642020313020252520333A2025640A</ins>
+<ins>INVOKE null R@139</ins>
+<ins>BSP null</ins>
+<ins>MOV V@138 null</ins>
+<ins>MOV V@144 V@138</ins>
+<ins>EQUAL_R V@146 V@138 null</ins>
+<ins>MOV V@145 V@146</ins>
+<ins>REF V@148 S@help.TestClass C@5B6C696E653A3131335D</ins>
+<ins>ADD_I V@148 V@148 C@32</ins>
+<ins>ESP</ins>
+<ins>INVOKE V@47 R@148</ins>
+<ins>BSP V@149</ins>
+<ins>MOV V@147 V@149</ins>
+<ins>REF V@150 S@tiki.util.System C@5B6C696E653A3131345D</ins>
+<ins>ADD_I V@150 V@150 C@30</ins>
+<ins>EQUAL_R V@151 V@147 V@47</ins>
+<ins>REF V@152 V@47 C@5B6C696E653A3131345D</ins>
+<ins>ADD_I V@152 V@152 C@32</ins>
+<ins>EQUAL_R V@153 V@147 R@152</ins>
+<ins>ESP</ins>
+<ins>VARARGS V@151 V@153</ins>
+<ins>ARG C@2562202562</ins>
+<ins>INVOKE null R@150</ins>
+<ins>BSP null</ins>
+<ins>NEW V@156 C@34</ins>
+<ins>MOV R@156 C@33</ins>
+<ins>ADD_I V@156 V@156 C@31</ins>
+<ins>MOV V@155 V@156</ins>
+<ins>MOV R@156 C@33</ins>
+<ins>ADD_I V@156 V@156 C@31</ins>
+<ins>MOV R@156 C@36</ins>
+<ins>ADD_I V@156 V@156 C@31</ins>
+<ins>MOV R@156 C@39</ins>
+<ins>ADD_I V@156 V@156 C@31</ins>
+<ins>MOV V@154 V@155</ins>
+<ins>NEW V@159 C@36</ins>
+<ins>MOV R@159 C@35</ins>
+<ins>ADD_I V@159 V@159 C@31</ins>
+<ins>MOV V@158 V@159</ins>
+<ins>MOV R@159 C@31</ins>
+<ins>ADD_I V@159 V@159 C@31</ins>
+<ins>MOV R@159 C@32</ins>
+<ins>ADD_I V@159 V@159 C@31</ins>
+<ins>MOV R@159 C@33</ins>
+<ins>ADD_I V@159 V@159 C@31</ins>
+<ins>MOV R@159 C@34</ins>
+<ins>ADD_I V@159 V@159 C@31</ins>
+<ins>MOV R@159 C@35</ins>
+<ins>ADD_I V@159 V@159 C@31</ins>
+<ins>NEW V@161 C@31</ins>
+<ins>MOV R@161 C@30</ins>
+<ins>ADD_I V@161 V@161 C@31</ins>
+<ins>MOV V@160 V@161</ins>
+<ins>NEW V@163 C@34</ins>
+<ins>MOV R@163 C@33</ins>
+<ins>ADD_I V@163 V@163 C@31</ins>
+<ins>MOV V@162 V@163</ins>
+<ins>MOV R@163 V@158</ins>
+<ins>ADD_I V@163 V@163 C@31</ins>
+<ins>MOV R@163 V@154</ins>
+<ins>ADD_I V@163 V@163 C@31</ins>
+<ins>MOV R@163 V@160</ins>
+<ins>ADD_I V@163 V@163 C@31</ins>
+<ins>NEW V@165 C@36</ins>
+<ins>MOV R@165 C@35</ins>
+<ins>ADD_I V@165 V@165 C@31</ins>
+<ins>MOV V@164 V@165</ins>
+<ins>MOV R@165 C@31</ins>
+<ins>ADD_I V@165 V@165 C@31</ins>
+<ins>MOV R@165 C@32</ins>
+<ins>ADD_I V@165 V@165 C@31</ins>
+<ins>MOV R@165 C@33</ins>
+<ins>ADD_I V@165 V@165 C@31</ins>
+<ins>MOV R@165 C@34</ins>
+<ins>ADD_I V@165 V@165 C@31</ins>
+<ins>MOV R@165 C@35</ins>
+<ins>ADD_I V@165 V@165 C@31</ins>
+<ins>NEW V@167 C@31</ins>
+<ins>MOV R@167 C@30</ins>
+<ins>ADD_I V@167 V@167 C@31</ins>
+<ins>MOV V@166 V@167</ins>
+<ins>NEW V@169 C@32</ins>
+<ins>MOV R@169 C@31</ins>
+<ins>ADD_I V@169 V@169 C@31</ins>
+<ins>MOV V@168 V@169</ins>
+<ins>MOV R@169 C@31</ins>
+<ins>ADD_I V@169 V@169 C@31</ins>
+<ins>NEW V@171 C@34</ins>
+<ins>MOV R@171 C@33</ins>
+<ins>ADD_I V@171 V@171 C@31</ins>
+<ins>MOV V@170 V@171</ins>
+<ins>MOV R@171 V@164</ins>
+<ins>ADD_I V@171 V@171 C@31</ins>
+<ins>MOV R@171 V@166</ins>
+<ins>ADD_I V@171 V@171 C@31</ins>
+<ins>MOV R@171 V@168</ins>
+<ins>ADD_I V@171 V@171 C@31</ins>
+<ins>NEW V@173 C@33</ins>
+<ins>MOV R@173 C@32</ins>
+<ins>ADD_I V@173 V@173 C@31</ins>
+<ins>MOV V@172 V@173</ins>
+<ins>MOV R@173 V@162</ins>
+<ins>ADD_I V@173 V@173 C@31</ins>
+<ins>MOV R@173 V@170</ins>
+<ins>ADD_I V@173 V@173 C@31</ins>
+<ins>MOV V@157 V@172</ins>
+<ins>MOV V@174 C@30</ins>
+<ins>JUMP C@3337</ins>
+<ins>MOV V@175 C@30</ins>
+<ins>JUMP C@3237</ins>
+<ins>MOV V@176 C@30</ins>
+<ins>JUMP C@3136</ins>
+<ins>REF V@177 S@tiki.util.System C@5B6C696E653A3132375D</ins>
+<ins>ADD_I V@177 V@177 C@30</ins>
+<ins>REF V@178 V@157 C@5B6C696E653A3132375D</ins>
+<ins>ADD_I V@178 V@178 V@174</ins>
+<ins>REF V@179 R@178 C@5B6C696E653A3132375D</ins>
+<ins>ADD_I V@179 V@179 V@175</ins>
+<ins>REF V@180 R@179 C@5B6C696E653A3132375D</ins>
+<ins>ADD_I V@180 V@180 V@176</ins>
+<ins>ESP</ins>
+<ins>VARARGS V@174 V@175 V@176 R@180</ins>
+<ins>ARG C@6D6172746978325B25645D5B25645D5B25645D203D2025640A</ins>
+<ins>INVOKE null R@177</ins>
+<ins>BSP null</ins>
+<ins>MOV V@181 V@176</ins>
+<ins>ADD_I V@176 V@176 C@31</ins>
+<ins>REF V@182 V@157 C@5B6C696E653A3132355D</ins>
+<ins>ADD_I V@182 V@182 V@174</ins>
+<ins>REF V@183 R@182 C@5B6C696E653A3132355D</ins>
+<ins>ADD_I V@183 V@183 V@175</ins>
+<ins>SUB_I V@184 R@183 C@31</ins>
+<ins>LESS_I V@185 V@176 R@184</ins>
+<ins>TRUEJUMP C@2D3231 V@185</ins>
+<ins>MOV V@186 V@175</ins>
+<ins>ADD_I V@175 V@175 C@31</ins>
+<ins>REF V@187 V@157 C@5B6C696E653A3132335D</ins>
+<ins>ADD_I V@187 V@187 V@174</ins>
+<ins>SUB_I V@188 R@187 C@31</ins>
+<ins>LESS_I V@189 V@175 R@188</ins>
+<ins>TRUEJUMP C@2D3330 V@189</ins>
+<ins>ADD_I V@190 V@174 C@31</ins>
+<ins>MOV V@174 V@190</ins>
+<ins>MOV V@191 V@174</ins>
+<ins>SUB_I V@192 V@157 C@31</ins>
+<ins>LESS_I V@193 V@174 R@192</ins>
+<ins>TRUEJUMP C@2D3338 V@193</ins>
+<ins>RET</ins>
+</member>
+<member kind="method" name="test001">
+<ins>LOCAL C@49 C@49</ins>
+<ins>REF V@0 S@tiki.util.System C@5B6C696E653A3133345D</ins>
+<ins>ADD_I V@0 V@0 C@30</ins>
+<ins>REF V@1 S@Test C@5B6C696E653A3133345D</ins>
+<ins>ADD_I V@1 V@1 C@33</ins>
+<ins>ESP</ins>
+<ins>VARARGS R@1</ins>
+<ins>ARG C@696E20546573742E746573743030313A2073697A652025640A</ins>
+<ins>INVOKE null R@0</ins>
+<ins>BSP null</ins>
+<ins>RET</ins>
+</member>
+<member kind="field" type="I">size</member>
+<member entry="true" kind="method" name="main">
+<ins>LOCAL C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@52</ins>
+<ins>REF V@1 S@Test C@5B6C696E653A3134305D</ins>
+<ins>ADD_I V@1 V@1 C@33</ins>
+<ins>MOV R@1 C@3137</ins>
+<ins>MOV V@2 R@1</ins>
+<ins>REF V@3 S@Test C@5B6C696E653A3134315D</ins>
+<ins>ADD_I V@3 V@3 C@31</ins>
+<ins>REF V@4 S@Test C@5B6C696E653A3134315D</ins>
+<ins>ADD_I V@4 V@4 C@33</ins>
+<ins>ESP</ins>
+<ins>VARARGS C@31303030 C@32303030 C@33303030 C@34303030</ins>
+<ins>ARG R@4</ins>
+<ins>INVOKE null R@3</ins>
+<ins>BSP null</ins>
+<ins>REF V@5 S@tiki.util.System C@5B6C696E653A3134335D</ins>
+<ins>ADD_I V@5 V@5 C@30</ins>
+<ins>ESP</ins>
+<ins>ARG C@0A</ins>
+<ins>INVOKE null R@5</ins>
+<ins>BSP null</ins>
+<ins>REF V@6 S@tiki.util.System C@5B6C696E653A3134355D</ins>
+<ins>ADD_I V@6 V@6 C@30</ins>
+<ins>REF V@7 S@tiki.util.Date C@5B6C696E653A3134355D</ins>
+<ins>ADD_I V@7 V@7 C@30</ins>
+<ins>ESP</ins>
+<ins>ARG C@797979792D4D4D2D64642068683A6D6D3A7373</ins>
+<ins>INVOKE null R@7</ins>
+<ins>BSP V@8</ins>
+<ins>ESP</ins>
+<ins>VARARGS V@8</ins>
+<ins>ARG C@6E6F773A2025730A</ins>
+<ins>INVOKE null R@6</ins>
+<ins>BSP null</ins>
+<ins>RET</ins>
+</member>
+</class>
+</package>

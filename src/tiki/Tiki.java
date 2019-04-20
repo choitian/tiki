@@ -38,9 +38,8 @@ public class Tiki {
 		Document xml = analyzer.analyze(declaration, name);
 
 		if (xml != null) {
-			String env = System.getProperty("tiki.env");
 			String localName = PackagenameUtils.toPath(name) + ".xml";
-			File lib = Paths.get(env, "lib", localName).toFile();
+			File lib = Paths.get(System.getProperty("tiki.env"), "lib", localName).toFile();
 			lib.getParentFile().mkdirs();
 			IOUtils.toFile(IOUtils.toString(xml), lib);
 		}
@@ -118,8 +117,9 @@ public class Tiki {
 
 	Parser initializeParser() {
 		try {
-			InputStream dfa = new FileInputStream("dfa.xml");
-			InputStream lalr = new FileInputStream("lalr.xml");
+			
+			InputStream dfa = new FileInputStream(Paths.get(System.getProperty("tiki.env"), "dfa.xml").toFile());
+			InputStream lalr = new FileInputStream(Paths.get(System.getProperty("tiki.env"), "lalr.xml").toFile());
 
 			int debugSourceSnippetLineRange = 3;
 			return new Parser(lalr, new LexicalAnalyzer(dfa, debugSourceSnippetLineRange));

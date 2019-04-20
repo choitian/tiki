@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package>
+<source>78DA4BCE492C2E56F04D2CC950A8E62A2E492CC94C56C8CC2B51284ACC4BC9CFD500317333F374C062B989159AD6304549F9F939A989790A39A9C5C56065658939A5A906109560B62176C5AE85A5893944EB482F4A4D2C214D35691600FDA90163C3D4A3F0B1E8C92F225A4B597E668A4261717E11C413D1B18910E7E4E49743181999E91940E5B55C00119F89BE</source>
+<class name="tiki.util.Math">
+<member kind="method" name="random"/>
+<member kind="method" name="less"/>
+<member kind="method" name="lessEqual"/>
+<member kind="method" name="great"/>
+<member kind="method" name="greatEqual"/>
+<member kind="method" name="and"/>
+<member kind="method" name="or"/>
+<member kind="method" name="qsort"/>
+</class>
+</package>

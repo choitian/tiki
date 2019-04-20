@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package>
+<source>78DA658FB10EC2300C44F77E45C622F1078C88A153072476A775D3A0E040EC2010E2DF49D20606B63BF9DD9D3C3860564709968C7A35DA7B8740CAF2E1729567BBD9359644392423737615C05B04C7ED1A045AC41FD019F201F7C0F843BDCC18BE7CAE17DF91B4598D384174720217311DD70C47CD451546A3B1D4D1888F6DB64863316B97CDBA9FEA9C4A4155B829F84B055940EC50DFBEE7B514E9F51907596C82DECD074F1865F0</source>
+<class name="tiki.String">
+<member kind="method" name="isEmpty"/>
+<member kind="method" name="length"/>
+<member kind="method" name="equals"/>
+<member kind="method" name="equalsIgnoreCase"/>
+<member kind="method" name="toInt"/>
+<member kind="method" name="substring"/>
+<member kind="method" name="indexOf"/>
+<member kind="method" name="valueOf"/>
+</class>
+</package>

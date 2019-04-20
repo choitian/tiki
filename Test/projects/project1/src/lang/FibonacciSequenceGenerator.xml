@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package>
+<source>78DA7550CB6E8330103C83C43FB89C406D2A8C7AA9224B39A51FD023E2409D4DB21259546CD4AA15FF5E3FC045A01C30DED9D999591F90CE5D96C411353710A9BC76983E9952A32DCB82BF162F9C3BE8A62E22A58E204DE23C8965DB28C58EF8D1512325BEC3E70024E10D08FA46777D12FF9A2124CD683F5FDC4DE946A3641E083D853FB0EA5635BB783538D9D67DAF6C5630B9226B1BE92BAA678B30C17851ECD7D86C17050703127C59E32A106B47B11FD142885C55FA6A9C1698855C16A4137C873016E9410DAD5E3A7B613C678ECC846045EEF040F56ED02A604B1A5FD178A0D9BF73B4B261B3CA4DEE78FD202607CFF957D8527DC27116BD3B31A5DA9950EC718B96F9B4EAD6C18878B5C9CA9EEEE8410F3D2D9AA379A8F10F2680BC4C</source>
+<class name="lang.FibonacciSequenceGenerator">
+<member kind="method" name="FibonacciSequenceGenerator">
+<ins>LOCAL C@49 C@49 C@49 C@49 C@49 C@49 C@52 C@52 C@49 C@49 C@49 C@49</ins>
+<ins>REF V@0 V@-1 C@32 C@5B6C696E653A31355D</ins>
+<ins>MOV R@0 C@313030</ins>
+<ins>MOV V@1 R@0</ins>
+<ins>REF V@2 V@-1 C@32 C@5B6C696E653A31365D</ins>
+<ins>MOV R@2 V@-2</ins>
+<ins>MOV V@3 R@2</ins>
+<ins>REF V@4 S@lang.FibonacciSequenceGenerator C@32 C@5B6C696E653A31375D</ins>
+<ins>REF V@5 V@-1 C@32 C@5B6C696E653A31375D</ins>
+<ins>NEWA V@6 C@49 R@5</ins>
+<ins>MOV R@4 V@6</ins>
+<ins>MOV V@7 R@4</ins>
+<ins>REF V@8 V@-1 C@31 C@5B6C696E653A31395D</ins>
+<ins>MOV R@8 C@313030</ins>
+<ins>MOV V@9 R@8</ins>
+<ins>REF V@10 S@lang.FibonacciSequenceGenerator C@31 C@5B6C696E653A32305D</ins>
+<ins>MOV R@10 C@323030</ins>
+<ins>MOV V@11 R@10</ins>
+<ins>RET</ins>
+</member>
+<member kind="field" type="I">nnn</member>
+<member kind="field" type="R">generated</member>
+<member kind="method" name="generate">
+<ins>LOCAL C@49 C@49 C@49 C@42 C@49 C@42 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@42 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49 C@49</ins>
+<ins>REF V@1 V@-1 C@32 C@5B6C696E653A32345D</ins>
+<ins>MOV V@0 R@1</ins>
+<ins>JUMP C@34</ins>
+<ins>MOV V@0 C@30</ins>
+<ins>MOV V@2 V@0</ins>
+<ins>JUMP C@3431</ins>
+<ins>EQUAL_I V@3 V@-2 C@30</ins>
+<ins>TRUEJUMP C@2D34 V@3</ins>
+<ins>JUMP C@34</ins>
+<ins>MOV V@0 C@31</ins>
+<ins>MOV V@4 V@0</ins>
+<ins>JUMP C@3335</ins>
+<ins>EQUAL_I V@5 V@-2 C@31</ins>
+<ins>TRUEJUMP C@2D34 V@5</ins>
+<ins>JUMP C@37</ins>
+<ins>REF V@6 S@lang.FibonacciSequenceGenerator C@32 C@5B6C696E653A33345D</ins>
+<ins>SUB_I V@7 V@-2 C@31</ins>
+<ins>REF V@8 R@6 V@7 C@5B6C696E653A33345D</ins>
+<ins>MOV V@0 R@8</ins>
+<ins>MOV V@9 V@0</ins>
+<ins>JUMP C@3236</ins>
+<ins>REF V@10 S@lang.FibonacciSequenceGenerator C@32 C@5B6C696E653A33325D</ins>
+<ins>SUB_I V@11 V@-2 C@31</ins>
+<ins>REF V@12 R@10 V@11 C@5B6C696E653A33325D</ins>
+<ins>UNEQUAL_I V@13 R@12 C@30</ins>
+<ins>TRUEJUMP C@2D3130 V@13</ins>
+<ins>REF V@14 S@lang.FibonacciSequenceGenerator C@33 C@5B6C696E653A33375D</ins>
+<ins>SUB_I V@16 V@-2 C@31</ins>
+<ins>ESP V@15</ins>
+<ins>ARG V@16</ins>
+<ins>INVOKE V@-1 R@14</ins>
+<ins>BSP</ins>
+<ins>REF V@17 S@lang.FibonacciSequenceGenerator C@33 C@5B6C696E653A33375D</ins>
+<ins>SUB_I V@19 V@-2 C@32</ins>
+<ins>ESP V@18</ins>
+<ins>ARG V@19</ins>
+<ins>INVOKE V@-1 R@17</ins>
+<ins>BSP</ins>
+<ins>ADD_I V@20 V@15 V@18</ins>
+<ins>MOV V@0 V@20</ins>
+<ins>MOV V@21 V@0</ins>
+<ins>REF V@22 S@lang.FibonacciSequenceGenerator C@32 C@5B6C696E653A33385D</ins>
+<ins>SUB_I V@23 V@-2 C@31</ins>
+<ins>REF V@24 R@22 V@23 C@5B6C696E653A33385D</ins>
+<ins>MOV R@24 V@0</ins>
+<ins>MOV V@25 R@24</ins>
+<ins>RETV V@0</ins>
+<ins>JUMP C@31</ins>
+<ins>RET</ins>
+</member>
+</class>
+</package>

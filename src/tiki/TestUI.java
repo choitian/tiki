@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -53,7 +54,7 @@ public class TestUI extends Application {
 
 	static Parser initializeParser() {
 		try {
-			InputStream dfa = new FileInputStream("dfa.xml");
+			InputStream dfa = new FileInputStream(Paths.get(System.getProperty("tiki.env"), "dfa.xml").toFile());
 			
 			InputStream dnf = Tiki.class.getResourceAsStream("/dnf_ast.txt");
 			LALR lalr = new LALR();
@@ -99,7 +100,8 @@ public class TestUI extends Application {
 		if (ptree != null) {
 			AST ast = new AST(ptree);
 			try {
-				IOUtils.toFile(IOUtils.toString(ast.toXML()), new File(packageName + ".AST.xml"));
+				IOUtils.toFile(IOUtils.toString(ast.toXML()), 
+						Paths.get(System.getProperty("tiki.log"), packageName + ".AST.xml").toFile());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -122,11 +124,11 @@ public class TestUI extends Application {
 		DFA dfa = new DFA();
 		dfa.Construct(re);
 
-		IOUtils.toFile(IOUtils.toString(dfa.toXML()), "dfa.xml");
+		IOUtils.toFile(IOUtils.toString(dfa.toXML()), Paths.get(System.getProperty("tiki.env"), "dfa.xml").toFile());
 
 		LALR lalr = new LALR();
 		lalr.build(dnf);
-		IOUtils.toFile(IOUtils.toString(lalr.toXML()), "lalr.xml");
+		IOUtils.toFile(IOUtils.toString(lalr.toXML()), Paths.get(System.getProperty("tiki.env"), "lalr.xml").toFile());
 	}
 
 	static void compile(File sourceDir, File sourceFile) {
@@ -194,9 +196,10 @@ public class TestUI extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws FileNotFoundException {
-		System.setProperty("tiki.env", "D:/it/project/tiki/tiki/env");
-		System.setProperty("tiki.src", "D:/it/project/tiki/projects/project190411/src");
-		System.setProperty("tiki.libs", "D:/it/project/tiki/projects/project190411/lib");
+		System.setProperty("tiki.env", "env");
+		System.setProperty("tiki.log", "Test/projects/log");
+		System.setProperty("tiki.src", "Test/projects/project1/src");
+		System.setProperty("tiki.libs", "Test/projects/project1/lib");
 
 		primaryStage.setTitle("Tiki");
 		BorderPane root = new BorderPane();

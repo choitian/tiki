@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package>
+<source>78DA4BCE492C2E5670492C4955A8E62A2E492CC94C56082E29CACC4B57C8CB2FD78032D3F28B72134B34ADB96AB900B970112A</source>
+<class name="tiki.util.Date">
+<member kind="method" name="now"/>
+</class>
+</package>

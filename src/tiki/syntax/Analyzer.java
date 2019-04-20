@@ -147,7 +147,7 @@ public class Analyzer {
 		decl_unit unit = translateUnit(content);
 		
 		try {
-			IOUtils.toFile(IOUtils.toString(unit.getTree().toXML()), new File(packageName + ".syntaxTree.xml"));
+			IOUtils.toFile(IOUtils.toString(unit.getTree().toXML()), Paths.get(System.getProperty("tiki.log"), packageName + ".syntaxTree.xml").toFile());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
