@@ -42,24 +42,24 @@ import tiki.uitls.IOUtils;
 public class TestUI extends Application {
 	public static void main(String[] args) throws Exception {
 		launch(args);
-		
+
 	}
 
-	
 	private static TextArea info;
 
 	private static void log(String msg) {
 		info.appendText(msg + "\n");
+
 	}
 
 	static Parser initializeParser() {
 		try {
 			InputStream dfa = new FileInputStream(Paths.get(System.getProperty("tiki.env"), "dfa.xml").toFile());
-			
+
 			InputStream dnf = Tiki.class.getResourceAsStream("/dnf_ast.txt");
 			LALR lalr = new LALR();
 			lalr.build(dnf);
-			
+
 			String xml = IOUtils.toString(lalr.toXML());
 			InputStream lalr_is = new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8));
 
@@ -100,7 +100,7 @@ public class TestUI extends Application {
 		if (ptree != null) {
 			AST ast = new AST(ptree);
 			try {
-				IOUtils.toFile(IOUtils.toString(ast.toXML()), 
+				IOUtils.toFile(IOUtils.toString(ast.toXML()),
 						Paths.get(System.getProperty("tiki.log"), packageName + ".AST.xml").toFile());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -113,7 +113,7 @@ public class TestUI extends Application {
 		String src = System.getProperty("tiki.src");
 		File sourceDir = new File(src);
 		Files.walk(sourceDir.toPath()).filter(path -> !Files.isDirectory(path))
-				.filter(path -> path.toString().endsWith(".t")).forEach(path -> buildAST(sourceDir,path.toFile()));
+				.filter(path -> path.toString().endsWith(".t")).forEach(path -> buildAST(sourceDir, path.toFile()));
 
 	}
 
