@@ -10,7 +10,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -116,19 +120,34 @@ public class TestUI extends Application {
 				.filter(path -> path.toString().endsWith(".t")).forEach(path -> buildAST(sourceDir, path.toFile()));
 
 	}
-
+	
+	static void clearParser() throws Exception {
+		File dfaXML = Paths.get(System.getProperty("tiki.env"), "dfa.xml").toFile();
+		dfaXML.deleteOnExit();
+		
+		File lalrXML = Paths.get(System.getProperty("tiki.env"), "lalr.xml").toFile();
+		lalrXML.deleteOnExit();
+		
+		Logger.getGlobal().info("clearParser done.");
+	}
 	static void rebuildParser() throws Exception {
 		InputStream re = Tiki.class.getResourceAsStream("/re.txt");
 		InputStream dnf = Tiki.class.getResourceAsStream("/dnf.txt");
 
+		File dfaXML = Paths.get(System.getProperty("tiki.env"), "dfa.xml").toFile();
+
+		
 		DFA dfa = new DFA();
 		dfa.Construct(re);
 
-		IOUtils.toFile(IOUtils.toString(dfa.toXML()), Paths.get(System.getProperty("tiki.env"), "dfa.xml").toFile());
+		IOUtils.toFile(IOUtils.toString(dfa.toXML()), dfaXML);
 
+		File lalrXML = Paths.get(System.getProperty("tiki.env"), "lalr.xml").toFile();
 		LALR lalr = new LALR();
 		lalr.build(dnf);
-		IOUtils.toFile(IOUtils.toString(lalr.toXML()), Paths.get(System.getProperty("tiki.env"), "lalr.xml").toFile());
+		IOUtils.toFile(IOUtils.toString(lalr.toXML()), lalrXML);
+		
+		Logger.getGlobal().info("rebuildParser done.");
 	}
 
 	static void compile(File sourceDir, File sourceFile) {
@@ -152,6 +171,8 @@ public class TestUI extends Application {
 		File sourceDir = new File(src);
 		Files.walk(sourceDir.toPath()).filter(path -> !Files.isDirectory(path))
 				.filter(path -> path.toString().endsWith(".xml")).forEach(path -> delete(path.toFile()));
+		
+		Logger.getGlobal().info("clear done.");
 	}
 
 	static void build() throws Exception {
@@ -192,6 +213,8 @@ public class TestUI extends Application {
 	static void buildEnv() throws Exception {
 		Tiki tiki = new Tiki();
 		tiki.buildEnv();
+		
+		Logger.getGlobal().info("buildEnv done.");
 	}
 
 	@Override
@@ -279,6 +302,21 @@ public class TestUI extends Application {
 		buttons.add(btn);
 
 		btn = new Button();
+		btn.setText("clearParser");
+		btn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					clearParser();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		buttons.add(btn);
+		
+		btn = new Button();
 		btn.setText("rebuildParser");
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -294,12 +332,26 @@ public class TestUI extends Application {
 		buttons.add(btn);
 
 		btn = new Button();
-		btn.setText("testAST");
+		btn.setText("Test01");
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
-					testAST();
+					//testAST();
+
+					InputStream re_grammar = Tiki.class.getResourceAsStream("/re_grammar.txt");
+					String content = IOUtils.toString(re_grammar);
+					// System.out.println(content);
+
+					Pattern p = Pattern.compile("((?<prod>(\\s*\\w+\\s+)+)(?<script>\\{.*\\})?(\\s*\\|)?)+");
+					Matcher m = p.matcher(content);
+					while (m.find()) {
+						for(int i=0;i<m.groupCount();i++)
+						{
+							System.out.println(String.format("%d: %s", i,m.group(i)));
+						}
+					}
+
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

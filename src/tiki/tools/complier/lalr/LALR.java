@@ -232,6 +232,19 @@ public class LALR {
 			}
 		}
 
+		{
+			System.out.print(String.format("state: %d\n",state_map_.size()));
+			int kernelSum = 0;
+			int gotoSum = 0;
+			for (Entry<String, State> entry : state_map_.entrySet()) {
+				State state = entry.getValue();
+				
+				kernelSum+=state.item_lr0_set_kernel.size();
+				gotoSum+=state.goto_table.size();
+
+			}
+			System.out.print(String.format("kernelSum %d,gotoSum %d\n",kernelSum,gotoSum));
+		}
 	}
 
 	void BuildPropagateAndSpontaneouTable(State state, ItemLR0 item,
@@ -247,7 +260,9 @@ public class LALR {
 		for (ItemLR1 lr1 : test_state.item_lr1_set_all) {
 			if (!lr1.core.EndWithDot()) {
 				if (lr1.lookahead != bnf_.symbol_end_) {
-					SendTo(state, lr1.core, lr1.lookahead, unpropagateds);
+					
+					State to = state.goto_table.get(lr1.core.DotRight().id);
+					SendTo(state,to, lr1.core, lr1.lookahead, unpropagateds);
 				} else {
 					propagate_table_item.add(lr1.core.hashString());
 				}
@@ -396,17 +411,18 @@ public class LALR {
 			if (propagate_table_item != null) {
 				for (String by_core_hash_string : propagate_table_item) {
 					ItemLR0 by_core = item_lr0_map_.get(by_core_hash_string);
-					SendTo(from_state, by_core, from_item.lookahead, unpropagateds);
+					
+					State to = from_state.goto_table.get(by_core.DotRight().id);
+					SendTo(from_state, to,by_core, from_item.lookahead, unpropagateds);
 				}
 			}
 		}
 	}
 
-	void SendTo(State from, ItemLR0 by_core, Symbol lookahead, LinkedList<Pair<State, ItemLR1>> unpropagateds) {
+	void SendTo(State from,State to, ItemLR0 by_core, Symbol lookahead, LinkedList<Pair<State, ItemLR1>> unpropagateds) {
 		Production production = by_core.production;
 		int dot = by_core.dot + 1;
 
-		State to = from.goto_table.get(by_core.DotRight().id);
 		ItemLR1 new_item = TryMakeItemLR1(production, dot, lookahead);
 		if (to.item_lr1_set_kernel.add(new_item)) {
 			to.item_lr1_set_all.add(new_item);

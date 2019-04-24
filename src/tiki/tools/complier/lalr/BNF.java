@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
@@ -135,6 +136,17 @@ class BNF {
 				}
 			}
 		}
+		/*
+		for (Entry<String, Symbol> entry : symbol_map_.entrySet()) {
+			Symbol symbol = entry.getValue();
+			TreeSet<String> fst = symbol.first_set;
+			String[] vs = fst.toArray(new String[fst.size()]);
+			Arrays.sort(vs);
+			String jd = String.join(" ", vs);
+			System.out.print(String.format("%s [%s]\n", symbol.text,jd));
+		}	
+		*/	
+
 	}
 
 	void ComputeFSTNonTerminal(Symbol symbol_non_terminal) {
