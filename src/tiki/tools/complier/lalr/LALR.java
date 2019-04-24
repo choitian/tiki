@@ -233,6 +233,7 @@ public class LALR {
 		}
 
 		{
+			/*
 			System.out.print(String.format("state: %d\n",state_map_.size()));
 			int kernelSum = 0;
 			int gotoSum = 0;
@@ -241,19 +242,48 @@ public class LALR {
 				
 				kernelSum+=state.item_lr0_set_kernel.size();
 				gotoSum+=state.goto_table.size();
-
+				
 			}
 			System.out.print(String.format("kernelSum %d,gotoSum %d\n",kernelSum,gotoSum));
+			for (Entry<String, State> entry : state_map_.entrySet()) {
+				State state = entry.getValue();				
+				System.out.print(String.format("state:%d\n",state.id));
+				for(ItemLR0 kernel:state.item_lr0_set_kernel)
+				{
+					System.out.print(String.format("%s\n",kernel.toString()));
+				}	
+				
+				System.out.print(String.format("\n\n\n"));
+			}			
+			for (Entry<String, State> entry : state_map_.entrySet()) {
+				State state = entry.getValue();				
+				for(ItemLR0 kernel:state.item_lr0_set_kernel)
+				{
+					
+					for (Entry<String, State> entry1 : state_map_.entrySet()) {
+						State state1 = entry1.getValue();
+						if(state1==state)
+							continue;
+						
+						for(ItemLR0 kernel1:state1.item_lr0_set_kernel)
+						{
+							if(kernel.hashString().equals(kernel1.hashString()))
+							{
+								System.out.print(String.format("%d and %d,has same kernel %s\n",state.id,state1.id,kernel.toString()));
+							}
+						}
+					}	
+				}
+				
+			}
+			*/
 		}
 	}
 
-	void BuildPropagateAndSpontaneouTable(State state, ItemLR0 item,
+	void BuildPropagateAndSpontaneouTable(State state, ItemLR0 kernel,
 			LinkedHashMap<String, TreeSet<String>> propagate_table, LinkedList<Pair<State, ItemLR1>> unpropagateds) {
-		if (propagate_table.containsKey(item.hashString())) {
-			return;
-		}
 		State test_state = new State();
-		test_state.item_lr1_set_all.add(TryMakeItemLR1(item, bnf_.symbol_end_));
+		test_state.item_lr1_set_all.add(TryMakeItemLR1(kernel, bnf_.symbol_end_));
 
 		ClosureLR1(test_state);
 		TreeSet<String> propagate_table_item = new TreeSet<String>();
@@ -269,8 +299,8 @@ public class LALR {
 			}
 		}
 
-		if (!propagate_table.containsKey(item.hashString())) {
-			propagate_table.put(item.hashString(), propagate_table_item);
+		if (!propagate_table.containsKey(kernel.hashString())) {
+			propagate_table.put(kernel.hashString(), propagate_table_item);
 		}
 	}
 
