@@ -9,11 +9,7 @@ imports
 ;
 
 import
-: IMPORT package_name SEMICOLON												{ decl_import(package_name<decl_package_name>) }
-;
-
-package_name
-: scope_name																{ decl_package_name(name<exp_SCOPE_NAME>) }											
+: IMPORT scope_name SEMICOLON												{ decl_import(package_name<exp_SCOPE_NAME>) }
 ;
 
 class_definitions

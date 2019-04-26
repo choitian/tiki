@@ -17,8 +17,6 @@
 "null"			{ "NULL" }
 "import"		{ "IMPORT" }
 
-"..."		{ "ELLIPSE" }
-
 @[a-zA-Z_]([0-9a-zA-Z_])*		{ "ANNOTATION" }
 [a-zA-Z_]([0-9a-zA-Z_])*		{ "ID" }
 [a-zA-Z_]([0-9a-zA-Z_])*("."[a-zA-Z_]([0-9a-zA-Z_])*)+		{ "SCOPE_ID" }
@@ -28,8 +26,7 @@
 \"(\\.|[^\\"])*\"	{ "STRING" }
 \[[ \t]*\]				{ "ARRAY" }
 
-
-
+"..."		{ "ELLIPSE" }
 "="			{ "ASSIGN" }
 "!"			{ "NOT" }
 "&&"		{ "AND" }

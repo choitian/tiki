@@ -19,8 +19,8 @@ public class decl_import extends SyntaxNode {
 		return package_name;
 	}
 
-	public void setPackage_name(decl_package_name package_name) {
-		this.package_name = package_name.getPackageName();
+	public void setPackage_name(exp_SCOPE_NAME package_name) {
+		this.package_name = package_name.getName();
 	}
 
 	@Override
