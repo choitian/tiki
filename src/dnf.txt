@@ -13,8 +13,7 @@ import
 ;
 
 package_name
-: ID																		{ decl_package_name(id=$0) }
-| package_name DOT ID														{ decl_package_name(list<decl_package_name>, id=$2) }
+: scope_name																{ decl_package_name(name<exp_SCOPE_NAME>) }											
 ;
 
 class_definitions
@@ -291,8 +290,8 @@ primary_exp
 ;
 
 scope_name
-: ID																		{ exp_SCOPE_NAME(id=$0) }
-| scope_name DOT ID															{ exp_SCOPE_NAME(list<exp_SCOPE_NAME>,id=$2)}
+: SCOPE_ID																	{ exp_SCOPE_NAME(id=$0) }
+| ID																		{ exp_SCOPE_NAME(id=$0) }
 ;
 
 argument_exps

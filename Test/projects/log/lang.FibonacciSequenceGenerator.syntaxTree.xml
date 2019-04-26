@@ -227,3 +227,11 @@
 </decl_class_definition>
 </decl_unit>
 </root>
+stmt_return>
+<exp_SCOPE_NAME>result</exp_SCOPE_NAME>
+</stmt_return>
+</stmt_compound>
+</decl_method_definition>
+</decl_class_definition>
+</decl_unit>
+</root>

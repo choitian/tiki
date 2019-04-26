@@ -290,7 +290,7 @@ public class LALR {
 		for (ItemLR1 lr1 : test_state.item_lr1_set_all) {
 			if (!lr1.core.EndWithDot()) {
 				if (lr1.lookahead != bnf_.symbol_end_) {
-					
+				
 					State to = state.goto_table.get(lr1.core.DotRight().id);
 					SendTo(state,to, lr1.core, lr1.lookahead, unpropagateds);
 				} else {
@@ -381,12 +381,12 @@ public class LALR {
 								Production byold = bnf_.getProductions().get(Integer.parseInt(action.substring(1)));
 								Production byNew = item.core.production;
 
-								String msg = String.format("Error,Conflicting(R-R) On: %s\n%s\n%s", item.lookahead.text,
+								String msg = String.format("Error,Conflicting(R/R) On: %s\n%s\n%s", item.lookahead.text,
 										byold.ToText(), byNew.ToText());
 								throw new Exception(msg);
 							} else if (action.startsWith("s")) {
 								Logger.getGlobal()
-										.info("Conflicting(S-R) On: " + item.lookahead.text + ",Perfer Shift");
+										.info("Conflicting(S/R) On:" + item.lookahead.text + ",Perfer Shift");
 							}
 						} else {
 							state.parsing_table.put(item.lookahead.id, "r" + item.core.production.id);
@@ -398,14 +398,18 @@ public class LALR {
 						if (state.parsing_table.containsKey(dot_right.id)) {
 							String action = state.parsing_table.get(dot_right.id);
 							if (action.startsWith("r")) {
-								Logger.getGlobal().info("Conflicting(R-S) On:" + dot_right.text
+								Logger.getGlobal().info("Conflicting(S/R) On:" + dot_right.text
 										+ ",Perfer Shift Over Reduce " + state.parsing_table.get(dot_right.id));
 
 								Production prod = bnf_.getProductions().get(Integer.parseInt(action.substring(1)));
 								Logger.getGlobal().info("Production:" + prod.ToText());
+								
+								state.parsing_table.put(dot_right.id, "s");
 							}
+						}else {
+							state.parsing_table.put(dot_right.id, "s");
 						}
-						state.parsing_table.put(dot_right.id, "s");
+						
 					}
 				}
 			}
@@ -423,6 +427,7 @@ public class LALR {
 		for (Entry<String, State> entry : state_map_.entrySet()) {
 			State state = entry.getValue();
 			for (ItemLR0 kernel : state.item_lr0_set_kernel) {
+				Symbol dot_right = kernel.DotRight();
 				BuildPropagateAndSpontaneouTable(state, kernel, propagate_table, unpropagateds);
 			}
 		}

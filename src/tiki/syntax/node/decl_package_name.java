@@ -6,9 +6,7 @@ import tiki.syntax.Analyzer;
 import tiki.syntax.SymbolManager;
 
 public class decl_package_name extends SyntaxNode {
-	String id;
-
-	decl_package_name list;
+	private exp_SCOPE_NAME name;
 
 	@Override
 	void doCheck(Analyzer analyzer, SymbolManager symbolManager) {
@@ -16,21 +14,11 @@ public class decl_package_name extends SyntaxNode {
 	}
 
 	public String getPackageName() {
-		String name = id;
-		decl_package_name level = this.list;
-		while (level != null) {
-			name = level.id + "." + name;
-			level = level.list;
-		}
-		return name;
+		return name.getName();
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public void setList(decl_package_name list) {
-		this.list = list;
+	public void setName(exp_SCOPE_NAME name) {
+		this.name = name;
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package tiki.syntax.node;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.w3c.dom.Document;
@@ -159,11 +160,9 @@ public class exp_SCOPE_NAME extends Exp {
 
 	private String id;
 
-	exp_SCOPE_NAME list;
-
 	@Override
 	void doCheck(Analyzer analyzer, SymbolManager symbolManager) {
-		ArrayList<String> ids = ids();
+		List<String> ids = ids();
 		String baseName = ids.get(0);
 
 		Symbol symbol = symbolManager.getSymbol(baseName);
@@ -174,11 +173,11 @@ public class exp_SCOPE_NAME extends Exp {
 			baseEvalue = checkVariableBase(analyzer, symbol, this.getPosition());
 		} else {
 			IType typeClass = null;
-			for (int i = 1; i < ids.size(); i++) {
-				String pName = PackagenameUtils.link(ids.subList(0, i), ".");
+			for (int i = 0; i < ids.size(); i++) {
+				String pName = PackagenameUtils.link(ids.subList(0, i+1), ".");
 				typeClass = analyzer.getTypeClass(pName);
 				if (typeClass != null) {
-					subName = ids.subList(i, ids.size());
+					subName = ids.subList(i+1, ids.size());
 					break;
 				}
 			}
@@ -206,18 +205,22 @@ public class exp_SCOPE_NAME extends Exp {
 		return PackagenameUtils.link(this.ids(), ".");
 	}
 
-	private ArrayList<String> ids() {
-		ArrayList<String> result = new ArrayList<String>();
-		walk(result);
-		return result;
+	private List<String> ids() {
+		ArrayList<String> list = new ArrayList<String>();
+		String[] ids_=id.split("\\.");
+		for (String id:ids_)
+		{
+			id=id.trim();
+			if(!id.isEmpty())
+			{
+				list.add(id);
+			}
+		}
+		return list;
 	}
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public void setList(exp_SCOPE_NAME list) {
-		this.list = list;
 	}
 
 	@Override
@@ -227,14 +230,5 @@ public class exp_SCOPE_NAME extends Exp {
 
 		ele.setTextContent(getName());
 		upper.appendChild(ele);
-	}
-
-	private void walk(ArrayList<String> result) {
-		if (list != null) {
-			list.walk(result);
-		}
-		if (id != null) {
-			result.add(id);
-		}
 	}
 }
