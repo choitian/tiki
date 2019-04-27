@@ -18,15 +18,12 @@ public class Parser {
 	LinkedHashMap<Integer, Production> productionMap;
 
 	LinkedHashMap<Integer, State> stateMap;
-	LinkedHashMap<Integer, Symbol> symbolMap;
-	LinkedHashMap<String, Symbol> symbolMapByText;
 	ITokenStream tokenStream;
 
 	public Parser(InputStream lalr, ITokenStream token_stream) {
 		tokenStream = token_stream;
 
-		symbolMap = new LinkedHashMap<Integer, Symbol>();
-		symbolMapByText = new LinkedHashMap<String, Symbol>();
+
 		productionMap = new LinkedHashMap<Integer, Production>();
 		stateMap = new LinkedHashMap<Integer, State>();
 
@@ -48,14 +45,6 @@ public class Parser {
 		if (state_id == null)
 			return null;
 		return this.stateMap.get(state_id);
-	}
-
-	Symbol getSymbol(Integer symbol_id) {
-		return this.symbolMap.get(symbol_id);
-	}
-
-	Symbol getSymbol__by_text(String symbol_text) {
-		return this.symbolMapByText.get(symbol_text);
 	}
 
 	void newLALRState(Element element) throws Exception {
@@ -106,7 +95,7 @@ public class Parser {
 		track.push(this.stateMap.get(0));
 		while (true) {
 			State state = track.peek();
-			Symbol ls = getSymbol__by_text(lookahead.type);
+			String ls = lookahead.type;
 			String action = state.ActionOf(ls);
 
 			if (action == null || action.isEmpty()) {
@@ -114,7 +103,7 @@ public class Parser {
 				break;
 			}
 
-			if (action.startsWith("s")) {
+			if (action.startsWith("shift")) {
 				OnShift(pt_nodes, lookahead);
 				State target = getState(state.Goto(ls));
 				if (target == null) {
@@ -125,9 +114,9 @@ public class Parser {
 
 				lookahead = NextToken();
 
-			} else if (action.startsWith("r")) {
+			} else if (action.startsWith("reduce")) {
 
-				String production_id = action.substring(1);
+				String production_id = action.substring(6);
 
 				Production production = getProduction(Integer.parseInt(production_id));
 				if (production == null) {
@@ -135,12 +124,11 @@ public class Parser {
 					break;
 				}
 
-				Symbol head = getSymbol(production.head_id);
+				String head = production.head;
 				if (head == null) {
 					errorMsg(state, lookahead);
 					break;
 				}
-				String head_text = head.text;
 				String script = production.script;
 				int plen = production.len;
 
@@ -149,7 +137,7 @@ public class Parser {
 					break;
 				}
 
-				OnReduce(pt_nodes, head_text, plen, script);
+				OnReduce(pt_nodes, head, plen, script);
 
 				if (track.size() <= plen) {
 					errorMsg(state, lookahead);
@@ -161,7 +149,7 @@ public class Parser {
 				State target = getState(track.peek().Goto(head));
 				track.push(target);
 
-			} else if (action.startsWith("a")) {
+			} else if (action.startsWith("accept")) {
 				if (pt_nodes.size() != 1) {
 					errorMsg(state, lookahead);
 					break;
@@ -183,8 +171,6 @@ public class Parser {
 
 			Element root = doc.getDocumentElement();
 
-			setupLALRSymbol(root.getElementsByTagName("symbol"));
-
 			setupLALRProduction(root.getElementsByTagName("production"));
 
 			setupLALRState(root.getElementsByTagName("state"));
@@ -200,17 +186,17 @@ public class Parser {
 
 			int id = Integer.parseInt(production.getAttribute("id"));
 			int len = Integer.parseInt(production.getAttribute("len"));
-			int head_id = Integer.parseInt(production.getAttribute("head"));
+			String head = production.getAttribute("head");
 
 			String nodes = production.getAttribute("nodes");
 			String script = production.getAttribute("script");
 
-			Production p = new Production(id, len, head_id, script);
+			Production p = new Production(id, len, head, script);
 			productionMap.put(p.id, p);
 
 			String[] parts = nodes.split("\\|");
 			for (int index0 = 0; index0 < len; index0++) {
-				p.nodes.add(Integer.parseInt(parts[index0]));
+				p.nodes.add(parts[index0]);
 			}
 		}
 	}
@@ -225,7 +211,7 @@ public class Parser {
 		for (int index = 0; index < gotos.getLength(); index++) {
 			Element gotoElement = (Element) gotos.item(index);
 
-			int on = Integer.parseInt(gotoElement.getAttribute("on"));
+			String on = gotoElement.getAttribute("on");
 			int state = Integer.parseInt(gotoElement.getAttribute("state"));
 
 			s.gotoTable.put(on, state);
@@ -236,77 +222,55 @@ public class Parser {
 		for (int index = 0; index < actions.getLength(); index++) {
 			Element element = (Element) actions.item(index);
 
-			int on = Integer.parseInt(element.getAttribute("on"));
+			String on = element.getAttribute("on");
 			String doWhat = element.getAttribute("do");
 
 			s.actionTable.put(on, doWhat);
 		}
 	}
-
-	void setupLALRSymbol(NodeList symbols) throws Exception {
-		for (int index = 0; index < symbols.getLength(); index++) {
-			Element symbol = (Element) symbols.item(index);
-
-			int id = Integer.parseInt(symbol.getAttribute("id"));
-			String text = symbol.getAttribute("text");
-			Symbol s = new Symbol(id, text);
-			symbolMap.put(s.id, s);
-			symbolMapByText.put(s.text, s);
-		}
-	}
 }
 
 class Production {
-	int head_id;
+	String head;
 	int id;
 	int len;
-	ArrayList<Integer> nodes;
+	ArrayList<String> nodes;
 	String script;
 
-	Production(int id, int len, int head_id, String script) {
+	Production(int id, int len, String head, String script) {
 		this.id = id;
 		this.len = len;
 
-		this.head_id = head_id;
+		this.head = head;
 		this.script = script;
 
-		nodes = new ArrayList<Integer>();
+		nodes = new ArrayList<String>();
 	}
 }
 
 class State {
-	LinkedHashMap<Integer, String> actionTable;
+	LinkedHashMap<String, String> actionTable;
 
-	LinkedHashMap<Integer, Integer> gotoTable;
+	LinkedHashMap<String, Integer> gotoTable;
 
 	int id;
 
 	State(int id) {
 		this.id = id;
 
-		gotoTable = new LinkedHashMap<Integer, Integer>();
-		actionTable = new LinkedHashMap<Integer, String>();
+		gotoTable = new LinkedHashMap<String, Integer>();
+		actionTable = new LinkedHashMap<String, String>();
 	}
 
-	String ActionOf(Symbol symbol) {
+	String ActionOf(String symbol) {
 		if (symbol == null)
 			return null;
-		return actionTable.get(symbol.id);
+		return actionTable.get(symbol);
 	}
 
-	Integer Goto(Symbol symbol) {
+	Integer Goto(String symbol) {
 		if (symbol == null)
 			return null;
-		return gotoTable.get(symbol.id);
-	}
-}
-
-class Symbol {
-	int id;
-	String text;
-
-	Symbol(int id, String text) {
-		this.id = id;
-		this.text = text;
+		return gotoTable.get(symbol);
 	}
 }

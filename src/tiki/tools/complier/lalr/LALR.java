@@ -228,7 +228,7 @@ public class LALR {
 				}
 				Symbol s = bnf_.symbol_map_.get(on);
 				unchecked.goto_table_s.put(on, result.first);
-				unchecked.goto_table.put(s.id, result.first);
+				unchecked.goto_table.put(s.text, result.first);
 			}
 		}
 
@@ -291,7 +291,7 @@ public class LALR {
 			if (!lr1.core.EndWithDot()) {
 				if (lr1.lookahead != bnf_.symbol_end_) {
 				
-					State to = state.goto_table.get(lr1.core.DotRight().id);
+					State to = state.goto_table.get(lr1.core.DotRight().text);
 					SendTo(state,to, lr1.core, lr1.lookahead, unpropagateds);
 				} else {
 					propagate_table_item.add(lr1.core.hashString());
@@ -373,41 +373,41 @@ public class LALR {
 			for (ItemLR1 item : state.item_lr1_set_all) {
 				if (item.core.EndWithDot()) {
 					if (item.core == item_accept_) {
-						state.parsing_table.put(item.lookahead.id, "a");
+						state.parsing_table.put(item.lookahead.text, "accept");
 					} else {
-						if (state.parsing_table.containsKey(item.lookahead.id)) {
-							String action = state.parsing_table.get(item.lookahead.id);
-							if (action.startsWith("r")) {
-								Production byold = bnf_.getProductions().get(Integer.parseInt(action.substring(1)));
+						if (state.parsing_table.containsKey(item.lookahead.text)) {
+							String action = state.parsing_table.get(item.lookahead.text);
+							if (action.startsWith("reduce")) {
+								Production byold = bnf_.getProductions().get(Integer.parseInt(action.substring(6)));
 								Production byNew = item.core.production;
 
 								String msg = String.format("Error,Conflicting(R/R) On: %s\n%s\n%s", item.lookahead.text,
 										byold.ToText(), byNew.ToText());
 								throw new Exception(msg);
-							} else if (action.startsWith("s")) {
+							} else if (action.startsWith("shift")) {
 								Logger.getGlobal()
 										.info("Conflicting(S/R) On:" + item.lookahead.text + ",Perfer Shift");
 							}
 						} else {
-							state.parsing_table.put(item.lookahead.id, "r" + item.core.production.id);
+							state.parsing_table.put(item.lookahead.text, "reduce" + item.core.production.id);
 						}
 					}
 				} else {
 					Symbol dot_right = item.core.DotRight();
 					if (dot_right.isTerminal()) {
-						if (state.parsing_table.containsKey(dot_right.id)) {
-							String action = state.parsing_table.get(dot_right.id);
-							if (action.startsWith("r")) {
+						if (state.parsing_table.containsKey(dot_right.text)) {
+							String action = state.parsing_table.get(dot_right.text);
+							if (action.startsWith("reduce")) {
 								Logger.getGlobal().info("Conflicting(S/R) On:" + dot_right.text
-										+ ",Perfer Shift Over Reduce " + state.parsing_table.get(dot_right.id));
+										+ ",Perfer Shift Over Reduce " + state.parsing_table.get(dot_right.text));
 
-								Production prod = bnf_.getProductions().get(Integer.parseInt(action.substring(1)));
+								Production prod = bnf_.getProductions().get(Integer.parseInt(action.substring(6)));
 								Logger.getGlobal().info("Production:" + prod.ToText());
 								
-								state.parsing_table.put(dot_right.id, "s");
+								state.parsing_table.put(dot_right.text, "shift");
 							}
 						}else {
-							state.parsing_table.put(dot_right.id, "s");
+							state.parsing_table.put(dot_right.text, "shift");
 						}
 						
 					}
@@ -427,7 +427,6 @@ public class LALR {
 		for (Entry<String, State> entry : state_map_.entrySet()) {
 			State state = entry.getValue();
 			for (ItemLR0 kernel : state.item_lr0_set_kernel) {
-				Symbol dot_right = kernel.DotRight();
 				BuildPropagateAndSpontaneouTable(state, kernel, propagate_table, unpropagateds);
 			}
 		}
@@ -447,7 +446,7 @@ public class LALR {
 				for (String by_core_hash_string : propagate_table_item) {
 					ItemLR0 by_core = item_lr0_map_.get(by_core_hash_string);
 					
-					State to = from_state.goto_table.get(by_core.DotRight().id);
+					State to = from_state.goto_table.get(by_core.DotRight().text);
 					SendTo(from_state, to,by_core, from_item.lookahead, unpropagateds);
 				}
 			}
@@ -473,22 +472,6 @@ public class LALR {
 			Element root = doc.createElement("root");
 			doc.appendChild(root);
 
-			for (Entry<String, Symbol> entry : bnf_.symbol_map_.entrySet()) {
-				Symbol symbol = entry.getValue();
-
-				Element symbol_e = doc.createElement("symbol");
-
-				Attr attr;
-				attr = doc.createAttribute("id");
-				attr.setValue(Integer.toString(symbol.id));
-				symbol_e.setAttributeNode(attr);
-
-				attr = doc.createAttribute("text");
-				attr.setValue(symbol.text);
-				symbol_e.setAttributeNode(attr);
-
-				root.appendChild(symbol_e);
-			}
 			for (Production production : bnf_.getProductions()) {
 				Element production_e = doc.createElement("production");
 
@@ -499,7 +482,7 @@ public class LALR {
 				production_e.setAttributeNode(attr);
 
 				attr = doc.createAttribute("head");
-				attr.setValue(Integer.toString(production.head.id));
+				attr.setValue(production.head.text);
 				production_e.setAttributeNode(attr);
 
 				int len = BNF.isNULLProduction(production) ? 0 : production.NodeSize();
@@ -512,7 +495,7 @@ public class LALR {
 					if (sb.length() != 0) {
 						sb.append("|");
 					}
-					sb.append(Integer.toString(node.id));
+					sb.append(node.text);
 				}
 				attr = doc.createAttribute("nodes");
 				attr.setValue(sb.toString());
@@ -536,12 +519,11 @@ public class LALR {
 				attr.setValue(Integer.toString(state.id));
 				state_e.setAttributeNode(attr);
 
-				for (Entry<Integer, State> entry_g : state.goto_table.entrySet()) {
+				for (Entry<String, State> entry_g : state.goto_table.entrySet()) {
 					Element item_e = doc.createElement("goto");
 
 					attr = doc.createAttribute("on");
-					int key = entry_g.getKey();
-					attr.setValue(Integer.toString(key));
+					attr.setValue(entry_g.getKey());
 					item_e.setAttributeNode(attr);
 
 					attr = doc.createAttribute("state");
@@ -551,11 +533,11 @@ public class LALR {
 					state_e.appendChild(item_e);
 				}
 
-				for (Entry<Integer, String> entry_p : state.parsing_table.entrySet()) {
+				for (Entry<String, String> entry_p : state.parsing_table.entrySet()) {
 					Element item_e = doc.createElement("action");
 
 					attr = doc.createAttribute("on");
-					attr.setValue(Integer.toString(entry_p.getKey()));
+					attr.setValue(entry_p.getKey());
 					item_e.setAttributeNode(attr);
 
 					attr = doc.createAttribute("do");
@@ -667,7 +649,7 @@ class State {
 		return sb.toString();
 	}
 
-	LinkedHashMap<Integer, State> goto_table;
+	LinkedHashMap<String, State> goto_table;
 	LinkedHashMap<String, State> goto_table_s;
 
 	public int id;
@@ -677,7 +659,7 @@ class State {
 	public TreeSet<ItemLR1> item_lr1_set_all;
 	public TreeSet<ItemLR1> item_lr1_set_kernel;
 
-	LinkedHashMap<Integer, String> parsing_table;
+	LinkedHashMap<String, String> parsing_table;
 
 	public State() {
 		item_lr0_set_all = new TreeSet<ItemLR0>(new ItemLR0Comparator());
@@ -685,9 +667,9 @@ class State {
 		item_lr1_set_all = new TreeSet<ItemLR1>(new ItemLR1Comparator());
 		item_lr1_set_kernel = new TreeSet<ItemLR1>(new ItemLR1Comparator());
 
-		goto_table = new LinkedHashMap<Integer, State>();
+		goto_table = new LinkedHashMap<String, State>();
 		goto_table_s = new LinkedHashMap<String, State>();
-		parsing_table = new LinkedHashMap<Integer, String>();
+		parsing_table = new LinkedHashMap<String, String>();
 	}
 
 	public void assignID(int id) {
