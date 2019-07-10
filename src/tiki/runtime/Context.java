@@ -36,11 +36,11 @@ public class Context {
 			return null;
 		}
 		int base_value = rt.getAp();
-		int vararg_length = rt.readInteger(base_value);
+		int vararg_length = rt.readInteger(base_value+1);
 
 		String[] varargs = new String[vararg_length];
 		for (int i = 0; i < vararg_length; i++) {
-			varargs[i] = rt.read(base_value + 1 + i);
+			varargs[i] = rt.read(base_value + 2 + i);
 		}
 		return varargs;
 	}

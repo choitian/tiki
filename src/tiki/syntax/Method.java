@@ -39,7 +39,7 @@ public class Method extends Scope {
 	}
 
 	public void addLocal(Symbol symbol) {
-		symbol.setOffset(locals.size());
+		symbol.setOffset(locals.size()+1);
 		locals.add(symbol);
 	}
 
@@ -57,12 +57,12 @@ public class Method extends Scope {
 
 	public void initializeParameter(Analyzer analyzer, Collection<Symbol> parameters) {
 		Symbol thiz = new Symbol(Method.THIS, clazz.getType(), false, method.getPosition());
-		thiz.setOffset(-1);
+		thiz.setOffset(0);
 		super.insertSymbol(thiz);
 
 		int order = 0;
 		for (Symbol p : parameters) {
-			p.setOffset(-2 - order++);
+			p.setOffset(-1 - order++);
 			super.insertSymbol(p);
 		}
 	}

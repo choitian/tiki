@@ -20,6 +20,6 @@ public class VARARGS implements IExecution {
 		for (Address arg : operands) {
 			mem.push(mem.read(arg));
 		}
-		mem.push(String.valueOf(reg.getSP() - operands.size()));
+		mem.push(String.valueOf(reg.getSP() - operands.size()+1));
 	}
 }

@@ -144,12 +144,25 @@ class Test
 	}
 	static int  main()
 	{
+		System.print("test__qsort\n");
 		test__qsort();
+		
+		System.print("test__FibonacciSequence\n");
 		test__FibonacciSequence();
+		
+		System.print("test__PI\n");
 		test__PI();
+		
+		System.print("test__MultidimensionalArrayA\n");
 		test__MultidimensionalArrayA();
+		
+		System.print("test__MultidimensionalArrayB\n");
 		test__MultidimensionalArrayB();
+		
+		System.print("test__VarargA\n");
 		test__VarargA(666,1,3,5,7,11);
+		
+		System.print("test__VarargB\n");
 		test__VarargB(666,1,3,5,7,11);
 	}
 }

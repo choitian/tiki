@@ -47,7 +47,7 @@ public class Memory implements IRuntime {
 
 	@Override
 	public int getParameterAddress(int index) {
-		return this.VM.getRegister().BP - 2 - index;
+		return this.VM.getRegister().BP - 1 - index;
 	}
 
 	@Override
@@ -56,11 +56,11 @@ public class Memory implements IRuntime {
 	}
 
 	public String pop() {
-		return read(VM.getRegister().SP);
+		return read(VM.getRegister().SP--);
 	}
 
 	public void push(String value) {
-		write(VM.getRegister().SP++, value);
+		write(++VM.getRegister().SP, value);
 	}
 
 	public int getMemAddress(Address address) {
