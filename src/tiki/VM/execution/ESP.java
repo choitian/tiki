@@ -8,8 +8,8 @@ import tiki.VM.VirtualMachine;
 
 public class ESP implements IExecution {
 	public static void doExecute(VirtualMachine VM, Register reg, Memory mem,Address result) {
-		// ap_up
 		// bp_up
+		// ap_up
 		// is VARARGS
 		// retvAdd
 		// next_ins
@@ -23,8 +23,8 @@ public class ESP implements IExecution {
 		// bp = bp_up
 		// set retv
 		int retvAdd = mem.getMemAddress(result);
-		mem.push(String.valueOf(reg.getAP())); // ap_up		
 		mem.push(String.valueOf(reg.getBP())); // bp_up
+		mem.push(String.valueOf(reg.getAP())); // ap_up		
 		mem.push(mem.read(Address.FALSE)); // is VARARGS
 		mem.push(String.valueOf(retvAdd)); // retvAdd
 		mem.push(mem.read(Address.NULL)); // next_ins

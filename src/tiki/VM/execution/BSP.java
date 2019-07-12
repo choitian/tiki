@@ -12,12 +12,8 @@ public class BSP implements IExecution {
 		mem.pop();//next_ins
 		mem.pop();//retvAdd
 		mem.pop();// is VARARGS
-		reg.setBP(Integer.parseInt(mem.pop()));//bp_up
 		reg.setAP(Integer.parseInt(mem.pop()));//ap_up
-		
-		//reg.setSP(Integer.parseInt(sp_up));
-		//reg.setAP(Integer.parseInt(ap_up));
-		//reg.setBP(Integer.parseInt(bp_up));
+		reg.setBP(Integer.parseInt(mem.pop()));//bp_up
 	}
 
 	@Override
