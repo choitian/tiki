@@ -144,7 +144,7 @@ class Test
 	}
 	static int  main()
 	{
-		System.print("test__qsort\n");
+		System.print("test__qsort..\n");
 		test__qsort();
 		
 		System.print("test__FibonacciSequence\n");

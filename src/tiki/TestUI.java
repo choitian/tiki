@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -123,29 +124,24 @@ public class TestUI extends Application {
 	
 	static void clearParser() throws Exception {
 		File dfaXML = Paths.get(System.getProperty("tiki.env"), "dfa.xml").toFile();
-		dfaXML.deleteOnExit();
+		dfaXML.delete();
 		
 		File lalrXML = Paths.get(System.getProperty("tiki.env"), "lalr.xml").toFile();
-		lalrXML.deleteOnExit();
+		lalrXML.delete();
 		
 		Logger.getGlobal().info("clearParser done.");
 	}
 	static void rebuildParser() throws Exception {
 		InputStream re = Tiki.class.getResourceAsStream("/re.txt");
 		InputStream dnf = Tiki.class.getResourceAsStream("/dnf.txt");
-
-		File dfaXML = Paths.get(System.getProperty("tiki.env"), "dfa.xml").toFile();
-
-		
+	
 		DFA dfa = new DFA();
 		dfa.Construct(re);
+		Files.copy(new ByteArrayInputStream(IOUtils.toString(dfa.toXML()).getBytes()), Paths.get(System.getProperty("tiki.env"), "dfa.xml"), StandardCopyOption.REPLACE_EXISTING);
 
-		IOUtils.toFile(IOUtils.toString(dfa.toXML()), dfaXML);
-
-		File lalrXML = Paths.get(System.getProperty("tiki.env"), "lalr.xml").toFile();
 		LALR lalr = new LALR();
 		lalr.build(dnf);
-		IOUtils.toFile(IOUtils.toString(lalr.toXML()), lalrXML);
+		Files.copy(new ByteArrayInputStream(IOUtils.toString(lalr.toXML()).getBytes()), Paths.get(System.getProperty("tiki.env"), "lalr.xml"), StandardCopyOption.REPLACE_EXISTING);
 		
 		Logger.getGlobal().info("rebuildParser done.");
 	}

@@ -1152,7 +1152,7 @@
 <base>
 <exp_SCOPE_NAME>System.print</exp_SCOPE_NAME>
 </base>
-<exp_STRING>"test__qsort\n"</exp_STRING>
+<exp_STRING>"test__qsort..\n"</exp_STRING>
 </exp_INVOKE>
 </stmt_exp>
 <stmt_exp>
@@ -1269,7 +1269,7 @@
 </decl_class_definition>
 </decl_unit>
 </root>
-ensionalArrayB</exp_SCOPE_NAME>
+sionalArrayB</exp_SCOPE_NAME>
 </base>
 </exp_INVOKE>
 </stmt_exp>
