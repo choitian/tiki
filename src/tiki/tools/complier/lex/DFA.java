@@ -4,13 +4,15 @@ import java.io.InputStream;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.Stack;
-import java.util.TreeSet;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import tiki.tools.complier.lex.node.SyntaxTreeNodeSet;
+import tiki.tools.complier.lex.node.NodeType;
+import tiki.tools.complier.lex.node.SyntaxTree;
 
 public class DFA {
 	DState dstate_initial_;
@@ -24,16 +26,14 @@ public class DFA {
 	void CatalogueFollowpos(DState state, LinkedHashMap<Character, DState> catalogue) {
 		catalogue.clear();
 
-		for (Integer id : state.nodes) {
-			SyntaxTree node = SyntaxTree.NODE_MAP.get(id);
-
+		for (SyntaxTree node : state.nodes.toCollection()) {
 			if (node.type.equals(NodeType.CHAR)) {
 				char value = node.value;
 				if (!catalogue.containsKey(value)) {
 					catalogue.put(value, new DState());
 				}
 				DState catalogue_state = catalogue.get(value);
-				catalogue_state.nodes.addAll(node.follow_pos);
+				catalogue_state.nodes.add(node.follow_pos);
 			}
 		}
 	}
@@ -47,47 +47,43 @@ public class DFA {
 			Compute(tree.ch1);
 
 		if (tree.type.equals(NodeType.END)) {
-			tree.first_pos.add(tree.id);
-			tree.last_pos.add(tree.id);
+			tree.first_pos.add(tree);
+			tree.last_pos.add(tree);
 		} else if (tree.type.equals(NodeType.NULL)) {
 			tree.nullable = true;
 		} else if (tree.type.equals(NodeType.CHAR)) {
-			tree.first_pos.add(tree.id);
-			tree.last_pos.add(tree.id);
+			tree.first_pos.add(tree);
+			tree.last_pos.add(tree);
 		} else if (tree.type.equals(NodeType.OR)) {
 			tree.nullable = tree.ch0.nullable || tree.ch1.nullable;
 
-			tree.first_pos.addAll(tree.ch0.first_pos);
-			tree.first_pos.addAll(tree.ch1.first_pos);
+			tree.first_pos.add(tree.ch0.first_pos);
+			tree.first_pos.add(tree.ch1.first_pos);
 
-			tree.last_pos.addAll(tree.ch0.last_pos);
-			tree.last_pos.addAll(tree.ch1.last_pos);
+			tree.last_pos.add(tree.ch0.last_pos);
+			tree.last_pos.add(tree.ch1.last_pos);
 		} else if (tree.type.equals(NodeType.CAT)) {
 			tree.nullable = tree.ch0.nullable && tree.ch1.nullable;
 
-			tree.first_pos.addAll(tree.ch0.first_pos);
+			tree.first_pos.add(tree.ch0.first_pos);
 			if (tree.ch0.nullable)
-				tree.first_pos.addAll(tree.ch1.first_pos);
+				tree.first_pos.add(tree.ch1.first_pos);
 
-			tree.last_pos.addAll(tree.ch1.last_pos);
+			tree.last_pos.add(tree.ch1.last_pos);
 			if (tree.ch1.nullable)
-				tree.last_pos.addAll(tree.ch0.last_pos);
+				tree.last_pos.add(tree.ch0.last_pos);
 
-			for (Integer id : tree.ch0.last_pos) {
-				SyntaxTree node = SyntaxTree.NODE_MAP.get(id);
-
-				node.follow_pos.addAll(tree.ch1.first_pos);
+			for (SyntaxTree node : tree.ch0.last_pos.toCollection()) {
+				node.follow_pos.add(tree.ch1.first_pos);
 			}
 		}else if (tree.type.equals(NodeType.PLUS)) {
 			tree.nullable = tree.ch0.nullable;
 
-			tree.first_pos.addAll(tree.ch0.first_pos);
-			tree.last_pos.addAll(tree.ch0.last_pos);
+			tree.first_pos.add(tree.ch0.first_pos);
+			tree.last_pos.add(tree.ch0.last_pos);
 
-			for (Integer id : tree.last_pos) {
-				SyntaxTree node = SyntaxTree.NODE_MAP.get(id);
-
-				node.follow_pos.addAll(tree.first_pos);
+			for (SyntaxTree node : tree.last_pos.toCollection()) {
+				node.follow_pos.add(tree.first_pos);
 			}
 		}
 	}
@@ -98,7 +94,7 @@ public class DFA {
 		Compute(tree);
 
 		dstate_initial_ = new DState();
-		dstate_initial_.nodes.addAll(tree.first_pos);
+		dstate_initial_.nodes.add(tree.first_pos);
 		TryAddState(dstate_initial_);
 
 		Stack<DState> unmarkeds = new Stack<DState>();
@@ -144,7 +140,7 @@ public class DFA {
 	}
 
 	Pair<DState, Boolean> TryAddState(DState state) {
-		String hash_string = state.hashString();
+		String hash_string = state.nodes.hashString();
 		if (dstate_map_.containsKey(hash_string)) {
 			return new Pair<DState, Boolean>(dstate_map_.get(hash_string), Boolean.FALSE);
 		} else {
@@ -160,11 +156,12 @@ public class DFA {
 class DState {
 	SyntaxTree acceptance;
 	int id;
-	TreeSet<Integer> nodes;
+	SyntaxTreeNodeSet nodes;
+    
 	LinkedHashMap<Character, DState> transition;
 
 	DState() {
-		nodes = new TreeSet<Integer>();
+		nodes = new SyntaxTreeNodeSet();
 		transition = new LinkedHashMap<Character, DState>();
 		acceptance = null;
 	}
@@ -174,9 +171,7 @@ class DState {
 	}
 
 	public void assignAcceptance() {
-		for (Integer id : nodes) {
-			SyntaxTree node = SyntaxTree.NODE_MAP.get(id);
-
+		for (SyntaxTree node : nodes.toCollection()) {
 			if (node.type.equals(NodeType.END)) {
 				if (acceptance == null || acceptance.priority > node.priority)
 					acceptance = node;
@@ -187,16 +182,6 @@ class DState {
 	public void assignID(int id) {
 		this.id = id;
 	}
-
-	public String hashString() {
-		StringBuilder sb = new StringBuilder();
-		for (Integer id : nodes) {
-			sb.append(".");
-			sb.append(id);
-		}
-		return sb.toString();
-	}
-
 	public Element ToXML(Document doc) {
 		Element state_e = doc.createElement("state");
 		Attr attr = null;

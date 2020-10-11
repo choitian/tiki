@@ -3,6 +3,8 @@ package tiki.tools.complier.lex;
 import java.util.Stack;
 import java.util.TreeSet;
 
+import tiki.tools.complier.lex.node.NodeType;
+import tiki.tools.complier.lex.node.SyntaxTree;
 import tiki.tools.complier.parser.ParseTree;
 
 class SyntaxTreeBuilder {

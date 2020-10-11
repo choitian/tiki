@@ -1,8 +1,7 @@
-package tiki.tools.complier.lex;
+package tiki.tools.complier.lex.node;
 
 import java.io.File;
 import java.util.LinkedHashMap;
-import java.util.TreeSet;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -15,17 +14,8 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-enum NodeType
-{
-	NULL,
-	CHAR,
-	PLUS,
-	END,
-	CAT,
-	OR,
-}
-class SyntaxTree {
-	public static final LinkedHashMap<Integer, SyntaxTree> NODE_MAP = new LinkedHashMap<Integer, SyntaxTree>();
+public class SyntaxTree {
+	static final LinkedHashMap<String, SyntaxTree> NODE_MAP = new LinkedHashMap<String, SyntaxTree>();
 
 	public static void SaveAsXML(SyntaxTree tree, String file) {
 		try {
@@ -70,21 +60,22 @@ class SyntaxTree {
 	public SyntaxTree ch0;
 	public SyntaxTree ch1;
 	public String extra;
-	TreeSet<Integer> first_pos;
+	public SyntaxTreeNodeSet first_pos;
 
-	TreeSet<Integer> follow_pos;
-	public int id;
-	TreeSet<Integer> last_pos;
-	boolean nullable;
+	public SyntaxTreeNodeSet follow_pos;
+	String id;
+	public SyntaxTreeNodeSet last_pos;
+	public boolean nullable;
 	public int priority;
 
-	NodeType type;
+	public NodeType type;
 
 	public char value;
 
 	private static int NO = 0;
+
 	public SyntaxTree(NodeType type) {
-		this.id = NO++;
+		this.id = "" + NO++;
 		this.type = type;
 		ch0 = null;
 		ch1 = null;
@@ -93,27 +84,31 @@ class SyntaxTree {
 
 		priority = 0;
 		nullable = false;
-		first_pos = new TreeSet<Integer>();
-		last_pos = new TreeSet<Integer>();
-		follow_pos = new TreeSet<Integer>();
+		first_pos = new SyntaxTreeNodeSet();
+		last_pos = new SyntaxTreeNodeSet();
+		follow_pos = new SyntaxTreeNodeSet();
 
 		NODE_MAP.put(this.id, this);
 	}
-	public SyntaxTree(NodeType type,SyntaxTree ch0) {
+
+	public SyntaxTree(NodeType type, SyntaxTree ch0) {
 		this(type);
 		this.ch0 = ch0;
 	}
-	public SyntaxTree(NodeType type,SyntaxTree ch0,SyntaxTree ch1) {
+
+	public SyntaxTree(NodeType type, SyntaxTree ch0, SyntaxTree ch1) {
 		this(type);
 		this.ch0 = ch0;
 		this.ch1 = ch1;
 	}
+
 	private static int PRIORITY = 0;
-	SyntaxTree LinkEnd(String script) {
+
+	public SyntaxTree LinkEnd(String script) {
 		SyntaxTree end = new SyntaxTree(NodeType.END);
 		end.priority = SyntaxTree.PRIORITY++;
 		end.extra = script;
 
-		return new SyntaxTree(NodeType.CAT,this,end);
+		return new SyntaxTree(NodeType.CAT, this, end);
 	}
 }

@@ -9,6 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import tiki.tools.complier.lalr.LALR;
+import tiki.tools.complier.lex.node.NodeType;
+import tiki.tools.complier.lex.node.SyntaxTree;
 import tiki.tools.complier.parser.ITokenStream;
 import tiki.tools.complier.parser.Parser;
 import tiki.tools.complier.parser.Token;
