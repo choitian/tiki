@@ -99,16 +99,21 @@ class SyntaxTree {
 
 		NODE_MAP.put(this.id, this);
 	}
+	public SyntaxTree(NodeType type,SyntaxTree ch0) {
+		this(type);
+		this.ch0 = ch0;
+	}
+	public SyntaxTree(NodeType type,SyntaxTree ch0,SyntaxTree ch1) {
+		this(type);
+		this.ch0 = ch0;
+		this.ch1 = ch1;
+	}
 	private static int PRIORITY = 0;
 	SyntaxTree LinkEnd(String script) {
 		SyntaxTree end = new SyntaxTree(NodeType.END);
 		end.priority = SyntaxTree.PRIORITY++;
 		end.extra = script;
 
-		SyntaxTree cat = new SyntaxTree(NodeType.CAT);
-		cat.ch0 = this;
-		cat.ch1 = end;
-
-		return cat;
+		return new SyntaxTree(NodeType.CAT,this,end);
 	}
 }

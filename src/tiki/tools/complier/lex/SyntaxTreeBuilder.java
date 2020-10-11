@@ -56,27 +56,12 @@ class SyntaxTreeBuilder {
 
 			track.push(node);
 		} else if (script.contains("STAR")) {
-			SyntaxTree node = new SyntaxTree(NodeType.OR);
-			node.ch0 = new SyntaxTree(NodeType.NULL);
-			
-			SyntaxTree ch1 = new SyntaxTree(NodeType.PLUS);
-			ch1.ch0 = track.pop();
-			
-			node.ch1 = ch1;
-
-			track.push(node);
+			track.push(new SyntaxTree(NodeType.OR, new SyntaxTree(NodeType.PLUS, track.pop()),
+					new SyntaxTree(NodeType.NULL)));
 		} else if (script.contains("PLUS")) {
-			SyntaxTree node = new SyntaxTree(NodeType.PLUS);
-
-			node.ch0 = track.pop();
-
-			track.push(node);
+			track.push(new SyntaxTree(NodeType.PLUS, track.pop()));
 		} else if (script.contains("QUESTION")) {
-			SyntaxTree node = new SyntaxTree(NodeType.OR);
-			node.ch0 = new SyntaxTree(NodeType.NULL);
-			node.ch1 = track.pop();
-
-			track.push(node);
+			track.push(new SyntaxTree(NodeType.OR, track.pop(), new SyntaxTree(NodeType.NULL)));
 		} else if (script.contains("CAT")) {
 			SyntaxTree node = new SyntaxTree(NodeType.CAT);
 
