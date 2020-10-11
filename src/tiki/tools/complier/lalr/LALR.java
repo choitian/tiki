@@ -1,7 +1,6 @@
 package tiki.tools.complier.lalr;
 
 import java.io.InputStream;
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map.Entry;
@@ -15,24 +14,17 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-class ItemLR0 {
-	static public String hashString(Production production, int dot) {
-		return Integer.toString(production.id) + "." + Integer.toString(dot);
-	}
+import tiki.uitls.collection.HashSet;
+import tiki.uitls.collection.IHash;
+import tiki.uitls.collection.Pair;
 
-	public int dot;
-	public String hash_string;
-
-	public LALR lalr;
-
+class ItemLR0 implements IHash{
 	public Production production;
+	public int dot;
 
 	public ItemLR0() {
 		production = null;
 		dot = 0;
-		lalr = null;
-
-		hash_string = null;
 	}
 
 	public Symbol DotRight() {
@@ -46,11 +38,9 @@ class ItemLR0 {
 		return BNF.isNULLProduction(production) || dot >= production.NodeSize();
 	}
 
+	@Override
 	public String hashString() {
-		if (hash_string == null)
-			hash_string = hashString(production, dot);
-
-		return hash_string;
+		return Integer.toString(production.id) + "." + Integer.toString(dot);
 	}
 
 	@Override
@@ -58,22 +48,7 @@ class ItemLR0 {
 		return production.ToText() + '/' + Integer.toString(dot);
 	}
 }
-
-class ItemLR0Comparator implements Comparator<ItemLR0> {
-	@Override
-	public int compare(ItemLR0 one, ItemLR0 two) {
-		String hash_one = one.hashString();
-		String hash_two = two.hashString();
-
-		return hash_one.compareTo(hash_two);
-	}
-}
-
-class ItemLR1 {
-	static public String hashString(ItemLR0 core, Symbol lookahead) {
-		return core.hashString() + "." + Integer.toString(lookahead.id);
-	}
-
+class ItemLR1 implements IHash{
 	public ItemLR0 core;
 
 	public Symbol lookahead;
@@ -83,8 +58,9 @@ class ItemLR1 {
 		lookahead = null;
 	}
 
+	@Override
 	public String hashString() {
-		return hashString(core, lookahead);
+		return core.hashString() + "." + Integer.toString(lookahead.id);
 	}
 
 	@Override
@@ -92,27 +68,16 @@ class ItemLR1 {
 		return core.toString() + '/' + lookahead.text;
 	}
 }
-
-class ItemLR1Comparator implements Comparator<ItemLR1> {
-	@Override
-	public int compare(ItemLR1 one, ItemLR1 two) {
-		String hash_one = one.hashString();
-		String hash_two = two.hashString();
-
-		return hash_one.compareTo(hash_two);
-	}
-}
-
 public class LALR {
 	BNF bnf_;
 
 	ItemLR0 item_accept_;
 	ItemLR0 item_initial_;
-	public LinkedHashMap<String, ItemLR0> item_lr0_map_;
+	public HashSet<ItemLR0> item_lr0_set;
 
-	public LinkedHashMap<String, ItemLR1> item_lr1_map_;
+	public HashSet<ItemLR1> item_lr1_set;
 	State state_initial_;
-	public LinkedHashMap<String, State> state_map_;
+	public HashSet<State> state_set;
 
 	public LALR() {
 		bnf_ = null;
@@ -120,9 +85,9 @@ public class LALR {
 		item_accept_ = null;
 		state_initial_ = null;
 
-		item_lr0_map_ = new LinkedHashMap<String, ItemLR0>();
-		item_lr1_map_ = new LinkedHashMap<String, ItemLR1>();
-		state_map_ = new LinkedHashMap<String, State>();
+		item_lr0_set = new HashSet<>();
+		item_lr1_set = new HashSet<>();
+		state_set = new HashSet<>();
 	}
 
 	void AddToUncheckedSymbol(ItemLR0 item, Stack<Symbol> uncheckeds, TreeSet<Integer> checkeds) {
@@ -227,7 +192,6 @@ public class LALR {
 					uncheckeds.add(to);
 				}
 				Symbol s = bnf_.symbol_map_.get(on);
-				unchecked.goto_table_s.put(on, result.first);
 				unchecked.goto_table.put(s.text, result.first);
 			}
 		}
@@ -287,7 +251,7 @@ public class LALR {
 
 		ClosureLR1(test_state);
 		TreeSet<String> propagate_table_item = new TreeSet<String>();
-		for (ItemLR1 lr1 : test_state.item_lr1_set_all) {
+		for (ItemLR1 lr1 : test_state.item_lr1_set_all.set()) {
 			if (!lr1.core.EndWithDot()) {
 				if (lr1.lookahead != bnf_.symbol_end_) {
 				
@@ -306,7 +270,7 @@ public class LALR {
 
 	void CatalogueGOTO(State state, LinkedHashMap<String, State> catalogue) {
 		catalogue.clear();
-		for (ItemLR0 item : state.item_lr0_set_all) {
+		for (ItemLR0 item : state.item_lr0_set_all.set()) {
 			Symbol dot_right = item.DotRight();
 			if (dot_right != null) {
 				State new_state = catalogue.get(dot_right.text);
@@ -326,7 +290,7 @@ public class LALR {
 		Stack<Symbol> uncheckeds = new Stack<Symbol>();
 		TreeSet<Integer> checkeds = new TreeSet<Integer>();
 
-		for (ItemLR0 item : state.item_lr0_set_all) {
+		for (ItemLR0 item : state.item_lr0_set_all.set()) {
 			AddToUncheckedSymbol(item, uncheckeds, checkeds);
 		}
 
@@ -346,7 +310,7 @@ public class LALR {
 		Stack<Pair<Symbol, Symbol>> uncheckeds = new Stack<Pair<Symbol, Symbol>>();
 		TreeSet<String> checkeds = new TreeSet<String>();
 
-		for (ItemLR1 item : state.item_lr1_set_all) {
+		for (ItemLR1 item : state.item_lr1_set_all.set()) {
 			AddToUncheckedSymbolAndLookahead(item, uncheckeds, checkeds);
 		}
 
@@ -366,11 +330,10 @@ public class LALR {
 	}
 
 	void ConstructParsingTable() throws Exception {
-		for (Entry<String, State> entry : state_map_.entrySet()) {
-			State state = entry.getValue();
+		for (State state : state_set.set()) {
 			ClosureLR1(state);
 
-			for (ItemLR1 item : state.item_lr1_set_all) {
+			for (ItemLR1 item : state.item_lr1_set_all.set()) {
 				if (item.core.EndWithDot()) {
 					if (item.core == item_accept_) {
 						state.parsing_table.put(item.lookahead.text, "accept");
@@ -424,9 +387,8 @@ public class LALR {
 		state_initial_.item_lr1_set_kernel.add(item);
 		unpropagateds.add(new Pair<State, ItemLR1>(state_initial_, item));
 
-		for (Entry<String, State> entry : state_map_.entrySet()) {
-			State state = entry.getValue();
-			for (ItemLR0 kernel : state.item_lr0_set_kernel) {
+		for (State state : state_set.set()) {
+			for (ItemLR0 kernel : state.item_lr0_set_kernel.set()) {
 				BuildPropagateAndSpontaneouTable(state, kernel, propagate_table, unpropagateds);
 			}
 		}
@@ -444,7 +406,7 @@ public class LALR {
 			TreeSet<String> propagate_table_item = propagate_table.get(from_item.core.hashString());
 			if (propagate_table_item != null) {
 				for (String by_core_hash_string : propagate_table_item) {
-					ItemLR0 by_core = item_lr0_map_.get(by_core_hash_string);
+					ItemLR0 by_core = item_lr0_set.get(by_core_hash_string);
 					
 					State to = from_state.goto_table.get(by_core.DotRight().text);
 					SendTo(from_state, to,by_core, from_item.lookahead, unpropagateds);
@@ -509,9 +471,7 @@ public class LALR {
 				root.appendChild(production_e);
 			}
 
-			for (Entry<String, State> entry : state_map_.entrySet()) {
-				State state = entry.getValue();
-
+			for (State state : state_set.set()) {
 				Element state_e = doc.createElement("state");
 				Attr attr;
 
@@ -557,28 +517,25 @@ public class LALR {
 	}
 
 	Pair<State, Boolean> TryAddState(State state) {
-		String hash_string = state.hash_item_lr0_set_kernel();
-		if (state_map_.containsKey(hash_string)) {
-			return new Pair<State, Boolean>(state_map_.get(hash_string), Boolean.FALSE);
+		String hash_string = state.hashString();
+		if (state_set.has(hash_string)) {
+			return new Pair<State, Boolean>(state_set.get(hash_string), Boolean.FALSE);
 		} else {
-			state.assignID(state_map_.size());
-			state_map_.put(hash_string, state);
+			state.assignID(state_set.size());
+			state_set.add(state);
 			return new Pair<State, Boolean>(state, Boolean.TRUE);
 		}
 	}
 
 	ItemLR0 TryMakeItemLR0(Production production, int dot) {
-		String hash_string = ItemLR0.hashString(production, dot);
-
-		if (item_lr0_map_.containsKey(hash_string))
-			return item_lr0_map_.get(hash_string);
-
 		ItemLR0 new_item = new ItemLR0();
 		new_item.production = production;
 		new_item.dot = dot;
-
-		item_lr0_map_.put(hash_string, new_item);
-		new_item.lalr = this;
+		
+		if (item_lr0_set.has(new_item))
+			return item_lr0_set.get(new_item);
+		
+		item_lr0_set.add(new_item);
 		return new_item;
 	}
 
@@ -588,17 +545,14 @@ public class LALR {
 	}
 
 	ItemLR1 TryMakeItemLR1(ItemLR0 core, Symbol lookahead) {
-		String hash_string = ItemLR1.hashString(core, lookahead);
-
-		if (item_lr1_map_.containsKey(hash_string))
-			return item_lr1_map_.get(hash_string);
-
 		ItemLR1 new_item = new ItemLR1();
 		new_item.core = core;
 		new_item.lookahead = lookahead;
+		
+		if (item_lr1_set.has(new_item))
+			return item_lr1_set.get(new_item);
 
-		item_lr1_map_.put(hash_string, new_item);
-
+		item_lr1_set.add(new_item);
 		return new_item;
 	}
 
@@ -606,77 +560,31 @@ public class LALR {
 		return TryMakeItemLR1(TryMakeItemLR0(production, dot), lookahead);
 	}
 }
-
-class Pair<A, B> {
-	public A first;
-	public B second;
-
-	public Pair(A first, B second) {
-		super();
-		this.first = first;
-		this.second = second;
-	}
-
-	@Override
-	public boolean equals(Object other) {
-		if (other instanceof Pair) {
-			Pair<?, ?> otherPair = (Pair<?, ?>) other;
-			return ((this.first == otherPair.first
-					|| (this.first != null && otherPair.first != null && this.first.equals(otherPair.first)))
-					&& (this.second == otherPair.second || (this.second != null && otherPair.second != null
-							&& this.second.equals(otherPair.second))));
-		}
-
-		return false;
-	}
-
-	@Override
-	public int hashCode() {
-		int hashFirst = first != null ? first.hashCode() : 0;
-		int hashSecond = second != null ? second.hashCode() : 0;
-
-		return (hashFirst + hashSecond) * hashSecond + hashFirst;
-	}
-}
-
-class State {
-	static public String hash_item_lr0_set_kernel(Iterable<ItemLR0> kernel) {
-		StringBuilder sb = new StringBuilder();
-		for (ItemLR0 item : kernel) {
-			sb.append("#");
-			sb.append(item.hashString());
-		}
-		return sb.toString();
-	}
+class State implements IHash{
+	public int id;
+	public HashSet<ItemLR0> item_lr0_set_all;
+	public HashSet<ItemLR0> item_lr0_set_kernel;
+	public HashSet<ItemLR1> item_lr1_set_all;
+	public HashSet<ItemLR1> item_lr1_set_kernel;
 
 	LinkedHashMap<String, State> goto_table;
-	LinkedHashMap<String, State> goto_table_s;
-
-	public int id;
-	public TreeSet<ItemLR0> item_lr0_set_all;
-
-	public TreeSet<ItemLR0> item_lr0_set_kernel;
-	public TreeSet<ItemLR1> item_lr1_set_all;
-	public TreeSet<ItemLR1> item_lr1_set_kernel;
-
 	LinkedHashMap<String, String> parsing_table;
 
 	public State() {
-		item_lr0_set_all = new TreeSet<ItemLR0>(new ItemLR0Comparator());
-		item_lr0_set_kernel = new TreeSet<ItemLR0>(new ItemLR0Comparator());
-		item_lr1_set_all = new TreeSet<ItemLR1>(new ItemLR1Comparator());
-		item_lr1_set_kernel = new TreeSet<ItemLR1>(new ItemLR1Comparator());
+		item_lr0_set_all = new HashSet<>();
+		item_lr0_set_kernel = new HashSet<>();
+		item_lr1_set_all = new HashSet<>();
+		item_lr1_set_kernel = new HashSet<ItemLR1>();
 
 		goto_table = new LinkedHashMap<String, State>();
-		goto_table_s = new LinkedHashMap<String, State>();
 		parsing_table = new LinkedHashMap<String, String>();
 	}
 
 	public void assignID(int id) {
 		this.id = id;
 	}
-
-	public String hash_item_lr0_set_kernel() {
-		return hash_item_lr0_set_kernel(item_lr0_set_kernel);
+	@Override
+	public String hashString() {
+		return item_lr0_set_kernel.hashString();
 	}
 }

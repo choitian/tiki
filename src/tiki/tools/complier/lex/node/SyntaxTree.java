@@ -1,8 +1,6 @@
 package tiki.tools.complier.lex.node;
 
 import java.io.File;
-import java.util.LinkedHashMap;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
@@ -14,9 +12,11 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class SyntaxTree {
-	static final LinkedHashMap<String, SyntaxTree> NODE_MAP = new LinkedHashMap<String, SyntaxTree>();
+import tiki.uitls.collection.HashSet;
+import tiki.uitls.collection.IHash;
 
+
+public class SyntaxTree implements IHash {
 	public static void SaveAsXML(SyntaxTree tree, String file) {
 		try {
 			DocumentBuilderFactory doc_builder_factory = DocumentBuilderFactory.newInstance();
@@ -60,11 +60,10 @@ public class SyntaxTree {
 	public SyntaxTree ch0;
 	public SyntaxTree ch1;
 	public String extra;
-	public SyntaxTreeNodeSet first_pos;
+	public HashSet<SyntaxTree> first_pos;
 
-	public SyntaxTreeNodeSet follow_pos;
-	String id;
-	public SyntaxTreeNodeSet last_pos;
+	public HashSet<SyntaxTree> follow_pos;
+	public HashSet<SyntaxTree> last_pos;
 	public boolean nullable;
 	public int priority;
 
@@ -73,7 +72,7 @@ public class SyntaxTree {
 	public char value;
 
 	private static int NO = 0;
-
+	private String id;
 	public SyntaxTree(NodeType type) {
 		this.id = "" + NO++;
 		this.type = type;
@@ -84,11 +83,9 @@ public class SyntaxTree {
 
 		priority = 0;
 		nullable = false;
-		first_pos = new SyntaxTreeNodeSet();
-		last_pos = new SyntaxTreeNodeSet();
-		follow_pos = new SyntaxTreeNodeSet();
-
-		NODE_MAP.put(this.id, this);
+		first_pos = new HashSet<>();
+		last_pos = new HashSet<>();
+		follow_pos = new HashSet<>();
 	}
 
 	public SyntaxTree(NodeType type, SyntaxTree ch0) {
@@ -110,5 +107,10 @@ public class SyntaxTree {
 		end.extra = script;
 
 		return new SyntaxTree(NodeType.CAT, this, end);
+	}
+
+	@Override
+	public String hashString() {
+		return id;
 	}
 }

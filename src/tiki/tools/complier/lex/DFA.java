@@ -10,7 +10,8 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import tiki.tools.complier.lex.node.SyntaxTreeNodeSet;
+import tiki.uitls.collection.HashSet;
+import tiki.uitls.collection.Pair;
 import tiki.tools.complier.lex.node.NodeType;
 import tiki.tools.complier.lex.node.SyntaxTree;
 
@@ -26,7 +27,7 @@ public class DFA {
 	void CatalogueFollowpos(DState state, LinkedHashMap<Character, DState> catalogue) {
 		catalogue.clear();
 
-		for (SyntaxTree node : state.nodes.toCollection()) {
+		for (SyntaxTree node : state.nodes.set()) {
 			if (node.type.equals(NodeType.CHAR)) {
 				char value = node.value;
 				if (!catalogue.containsKey(value)) {
@@ -73,7 +74,7 @@ public class DFA {
 			if (tree.ch1.nullable)
 				tree.last_pos.add(tree.ch0.last_pos);
 
-			for (SyntaxTree node : tree.ch0.last_pos.toCollection()) {
+			for (SyntaxTree node : tree.ch0.last_pos.set()) {
 				node.follow_pos.add(tree.ch1.first_pos);
 			}
 		}else if (tree.type.equals(NodeType.PLUS)) {
@@ -82,7 +83,7 @@ public class DFA {
 			tree.first_pos.add(tree.ch0.first_pos);
 			tree.last_pos.add(tree.ch0.last_pos);
 
-			for (SyntaxTree node : tree.last_pos.toCollection()) {
+			for (SyntaxTree node : tree.last_pos.set()) {
 				node.follow_pos.add(tree.first_pos);
 			}
 		}
@@ -156,12 +157,12 @@ public class DFA {
 class DState {
 	SyntaxTree acceptance;
 	int id;
-	SyntaxTreeNodeSet nodes;
+	HashSet<SyntaxTree> nodes;
     
 	LinkedHashMap<Character, DState> transition;
 
 	DState() {
-		nodes = new SyntaxTreeNodeSet();
+		nodes = new HashSet<>();
 		transition = new LinkedHashMap<Character, DState>();
 		acceptance = null;
 	}
@@ -171,7 +172,7 @@ class DState {
 	}
 
 	public void assignAcceptance() {
-		for (SyntaxTree node : nodes.toCollection()) {
+		for (SyntaxTree node : nodes.set()) {
 			if (node.type.equals(NodeType.END)) {
 				if (acceptance == null || acceptance.priority > node.priority)
 					acceptance = node;
@@ -216,37 +217,5 @@ class DState {
 			state_e.appendChild(item_e);
 		}
 		return state_e;
-	}
-}
-
-class Pair<A, B> {
-	public A first;
-	public B second;
-
-	public Pair(A first, B second) {
-		super();
-		this.first = first;
-		this.second = second;
-	}
-
-	@Override
-	public boolean equals(Object other) {
-		if (other instanceof Pair) {
-			Pair<?, ?> otherPair = (Pair<?, ?>) other;
-			return ((this.first == otherPair.first
-					|| (this.first != null && otherPair.first != null && this.first.equals(otherPair.first)))
-					&& (this.second == otherPair.second || (this.second != null && otherPair.second != null
-							&& this.second.equals(otherPair.second))));
-		}
-
-		return false;
-	}
-
-	@Override
-	public int hashCode() {
-		int hashFirst = first != null ? first.hashCode() : 0;
-		int hashSecond = second != null ? second.hashCode() : 0;
-
-		return (hashFirst + hashSecond) * hashSecond + hashFirst;
 	}
 }
