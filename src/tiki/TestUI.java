@@ -150,11 +150,6 @@ public class TestUI extends Application {
 		Tiki tiki = new Tiki();
 		tiki.compile(sourceDir, sourceFile);
 	}
-
-	static void delete(File sourceFile) {
-		sourceFile.delete();
-	}
-
 	static void clear() throws Exception {
 		String Libs = System.getProperty("tiki.libs");
 		String src = System.getProperty("tiki.src");
@@ -166,7 +161,7 @@ public class TestUI extends Application {
 
 		File sourceDir = new File(src);
 		Files.walk(sourceDir.toPath()).filter(path -> !Files.isDirectory(path))
-				.filter(path -> path.toString().endsWith(".xml")).forEach(path -> delete(path.toFile()));
+				.filter(path -> path.toString().endsWith(".xml")).forEach(path -> {path.toFile().delete();});
 		
 		Logger.getGlobal().info("clear done.");
 	}

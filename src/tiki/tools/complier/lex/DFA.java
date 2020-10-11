@@ -27,7 +27,7 @@ public class DFA {
 		for (Integer id : state.nodes) {
 			SyntaxTree node = SyntaxTree.NODE_MAP.get(id);
 
-			if (node.type.equals(SyntaxTree.CHAR)) {
+			if (node.type.equals(NodeType.CHAR)) {
 				char value = node.value;
 				if (!catalogue.containsKey(value)) {
 					catalogue.put(value, new DState());
@@ -46,15 +46,15 @@ public class DFA {
 		if (tree.ch1 != null)
 			Compute(tree.ch1);
 
-		if (tree.type.equals(SyntaxTree.END)) {
+		if (tree.type.equals(NodeType.END)) {
 			tree.first_pos.add(tree.id);
 			tree.last_pos.add(tree.id);
-		} else if (tree.type.equals(SyntaxTree.NULL)) {
+		} else if (tree.type.equals(NodeType.NULL)) {
 			tree.nullable = true;
-		} else if (tree.type.equals(SyntaxTree.CHAR)) {
+		} else if (tree.type.equals(NodeType.CHAR)) {
 			tree.first_pos.add(tree.id);
 			tree.last_pos.add(tree.id);
-		} else if (tree.type.equals(SyntaxTree.OR)) {
+		} else if (tree.type.equals(NodeType.OR)) {
 			tree.nullable = tree.ch0.nullable || tree.ch1.nullable;
 
 			tree.first_pos.addAll(tree.ch0.first_pos);
@@ -62,7 +62,7 @@ public class DFA {
 
 			tree.last_pos.addAll(tree.ch0.last_pos);
 			tree.last_pos.addAll(tree.ch1.last_pos);
-		} else if (tree.type.equals(SyntaxTree.CAT)) {
+		} else if (tree.type.equals(NodeType.CAT)) {
 			tree.nullable = tree.ch0.nullable && tree.ch1.nullable;
 
 			tree.first_pos.addAll(tree.ch0.first_pos);
@@ -78,18 +78,7 @@ public class DFA {
 
 				node.follow_pos.addAll(tree.ch1.first_pos);
 			}
-		} else if (tree.type.equals(SyntaxTree.STAR)) {
-			tree.nullable = true;
-
-			tree.first_pos.addAll(tree.ch0.first_pos);
-			tree.last_pos.addAll(tree.ch0.last_pos);
-
-			for (Integer id : tree.last_pos) {
-				SyntaxTree node = SyntaxTree.NODE_MAP.get(id);
-
-				node.follow_pos.addAll(tree.first_pos);
-			}
-		} else if (tree.type.equals(SyntaxTree.PLUS)) {
+		}else if (tree.type.equals(NodeType.PLUS)) {
 			tree.nullable = tree.ch0.nullable;
 
 			tree.first_pos.addAll(tree.ch0.first_pos);
@@ -188,7 +177,7 @@ class DState {
 		for (Integer id : nodes) {
 			SyntaxTree node = SyntaxTree.NODE_MAP.get(id);
 
-			if (node.type.equals(SyntaxTree.END)) {
+			if (node.type.equals(NodeType.END)) {
 				if (acceptance == null || acceptance.priority > node.priority)
 					acceptance = node;
 			}

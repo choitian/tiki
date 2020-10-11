@@ -33,17 +33,6 @@ public class RE_File {
 		Parser parser = new Parser(new ByteArrayInputStream(result.getBytes()), new RETokenStream());
 		return parser;
 	}
-	SyntaxTree LinkEnd(SyntaxTree node, String script) {
-		SyntaxTree end = new SyntaxTree(SyntaxTree.END);
-		end.priority = SyntaxTree.PRIORITY++;
-		end.extra = script;
-
-		SyntaxTree cat = new SyntaxTree(SyntaxTree.CAT);
-		cat.ch0 = node;
-		cat.ch1 = end;
-
-		return cat;
-	}
 
 	String[] NextItem() throws Exception {
 		String item[] = new String[2];
@@ -93,11 +82,12 @@ public class RE_File {
 		SyntaxTree tree = null;
 		while (item != null) {
 
-			SyntaxTree node = LinkEnd(SyntaxTreeBuilder.Build(parser.Parse(item[0])), item[1]);
+			SyntaxTree src = SyntaxTreeBuilder.Build(parser.Parse(item[0]));
+			SyntaxTree node = src.LinkEnd(item[1]);
 			if (tree == null) {
 				tree = node;
 			} else {
-				SyntaxTree or = new SyntaxTree(SyntaxTree.OR);
+				SyntaxTree or = new SyntaxTree(NodeType.OR);
 				or.ch0 = tree;
 				or.ch1 = node;
 				tree = or;

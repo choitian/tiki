@@ -24,7 +24,7 @@ class Test
 		MathUtils.qsort(result,0,result.length - 1);
 		
 		//show after sorted values
-		System.print("result initialized:");
+		System.print("result sorted:");
 		for(int i=0;i<result.length;i++)
 		{
 			System.print("%5d ",result[i]);
@@ -111,6 +111,10 @@ class Test
 			for(int j=0;j<dimensional_3[i].length;j++)
 			{
 				dimensional_3[i][j] = new int[4];
+				for(int k=0;k<dimensional_3[i][j].length;k++)
+				{
+					dimensional_3[i][j][k]=Math.random(0,9999);
+				}
 			}			
 		}
 		

@@ -15,18 +15,17 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+enum NodeType
+{
+	NULL,
+	CHAR,
+	PLUS,
+	END,
+	CAT,
+	OR,
+}
 class SyntaxTree {
-	public static final String CAT = "CAT";
-	public static final String CHAR = "CHAR";
-	public static final String END = "END";
-	public static int NO = 0;
 	public static final LinkedHashMap<Integer, SyntaxTree> NODE_MAP = new LinkedHashMap<Integer, SyntaxTree>();
-	public static final String NULL = "NULL";
-	public static final String OR = "OR";
-	public static final String PLUS = "PLUS";
-	public static int PRIORITY = 0;
-
-	public static final String STAR = "STAR";
 
 	public static void SaveAsXML(SyntaxTree tree, String file) {
 		try {
@@ -55,9 +54,9 @@ class SyntaxTree {
 		if (tree == null)
 			return;
 
-		String type = tree.type;
-		Element node_e = doc.createElement(type);
-		if (type.equals(SyntaxTree.CHAR)) {
+		NodeType type = tree.type;
+		Element node_e = doc.createElement(type.name());
+		if (type.equals(NodeType.CHAR)) {
 			Attr attr = doc.createAttribute("value");
 			attr.setValue(String.valueOf((int) tree.value));
 			node_e.setAttributeNode(attr);
@@ -79,11 +78,12 @@ class SyntaxTree {
 	boolean nullable;
 	public int priority;
 
-	public String type;
+	NodeType type;
 
 	public char value;
 
-	public SyntaxTree(String type) {
+	private static int NO = 0;
+	public SyntaxTree(NodeType type) {
 		this.id = NO++;
 		this.type = type;
 		ch0 = null;
@@ -98,5 +98,17 @@ class SyntaxTree {
 		follow_pos = new TreeSet<Integer>();
 
 		NODE_MAP.put(this.id, this);
+	}
+	private static int PRIORITY = 0;
+	SyntaxTree LinkEnd(String script) {
+		SyntaxTree end = new SyntaxTree(NodeType.END);
+		end.priority = SyntaxTree.PRIORITY++;
+		end.extra = script;
+
+		SyntaxTree cat = new SyntaxTree(NodeType.CAT);
+		cat.ch0 = this;
+		cat.ch1 = end;
+
+		return cat;
 	}
 }

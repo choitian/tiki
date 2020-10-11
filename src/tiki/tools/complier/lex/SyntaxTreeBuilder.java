@@ -56,32 +56,36 @@ class SyntaxTreeBuilder {
 
 			track.push(node);
 		} else if (script.contains("STAR")) {
-			SyntaxTree node = new SyntaxTree(SyntaxTree.STAR);
-
-			node.ch0 = track.pop();
+			SyntaxTree node = new SyntaxTree(NodeType.OR);
+			node.ch0 = new SyntaxTree(NodeType.NULL);
+			
+			SyntaxTree ch1 = new SyntaxTree(NodeType.PLUS);
+			ch1.ch0 = track.pop();
+			
+			node.ch1 = ch1;
 
 			track.push(node);
 		} else if (script.contains("PLUS")) {
-			SyntaxTree node = new SyntaxTree(SyntaxTree.PLUS);
+			SyntaxTree node = new SyntaxTree(NodeType.PLUS);
 
 			node.ch0 = track.pop();
 
 			track.push(node);
 		} else if (script.contains("QUESTION")) {
-			SyntaxTree node = new SyntaxTree(SyntaxTree.OR);
-			node.ch0 = new SyntaxTree(SyntaxTree.NULL);
+			SyntaxTree node = new SyntaxTree(NodeType.OR);
+			node.ch0 = new SyntaxTree(NodeType.NULL);
 			node.ch1 = track.pop();
 
 			track.push(node);
 		} else if (script.contains("CAT")) {
-			SyntaxTree node = new SyntaxTree(SyntaxTree.CAT);
+			SyntaxTree node = new SyntaxTree(NodeType.CAT);
 
 			node.ch1 = track.pop();
 			node.ch0 = track.pop();
 
 			track.push(node);
 		} else if (script.contains("OR")) {
-			SyntaxTree node = new SyntaxTree(SyntaxTree.OR);
+			SyntaxTree node = new SyntaxTree(NodeType.OR);
 
 			node.ch1 = track.pop();
 			node.ch0 = track.pop();
@@ -107,13 +111,13 @@ class SyntaxTreeBuilder {
 
 		SyntaxTree tree = null;
 		for (char ch : char_list.toCharArray()) {
-			SyntaxTree node = new SyntaxTree(SyntaxTree.CHAR);
+			SyntaxTree node = new SyntaxTree(NodeType.CHAR);
 			node.value = ch;
 
 			if (tree == null) {
 				tree = node;
 			} else {
-				SyntaxTree or = new SyntaxTree(SyntaxTree.OR);
+				SyntaxTree or = new SyntaxTree(NodeType.OR);
 				or.ch0 = tree;
 				or.ch1 = node;
 				tree = or;
@@ -123,7 +127,7 @@ class SyntaxTreeBuilder {
 	}
 
 	public static SyntaxTree Handler_CHAR(String extra) {
-		SyntaxTree tree = new SyntaxTree(SyntaxTree.CHAR);
+		SyntaxTree tree = new SyntaxTree(NodeType.CHAR);
 		if (extra.length() > 1 && extra.startsWith("\\"))
 			tree.value = StringUtils.unescapeCharacter(extra.charAt(1));
 		else
@@ -140,13 +144,13 @@ class SyntaxTreeBuilder {
 			if (value == '\n')
 				continue;
 
-			SyntaxTree node = new SyntaxTree(SyntaxTree.CHAR);
+			SyntaxTree node = new SyntaxTree(NodeType.CHAR);
 			node.value = value;
 
 			if (tree == null) {
 				tree = node;
 			} else {
-				SyntaxTree or = new SyntaxTree(SyntaxTree.OR);
+				SyntaxTree or = new SyntaxTree(NodeType.OR);
 				or.ch0 = tree;
 				or.ch1 = node;
 				tree = or;
@@ -160,13 +164,13 @@ class SyntaxTreeBuilder {
 
 		SyntaxTree tree = null;
 		for (char ch : char_list.toCharArray()) {
-			SyntaxTree node = new SyntaxTree(SyntaxTree.CHAR);
+			SyntaxTree node = new SyntaxTree(NodeType.CHAR);
 			node.value = ch;
 
 			if (tree == null) {
 				tree = node;
 			} else {
-				SyntaxTree cat = new SyntaxTree(SyntaxTree.CAT);
+				SyntaxTree cat = new SyntaxTree(NodeType.CAT);
 				cat.ch0 = tree;
 				cat.ch1 = node;
 				tree = cat;
